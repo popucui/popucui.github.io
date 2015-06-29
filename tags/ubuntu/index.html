@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ubuntu | popucui</title>
+  <meta name="author" content="Jack">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="popucui" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40854037-1', 'null');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/books">Books</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+<div class="alignleft" style="margin-top: 15px">
+
+  <a href="https://twitter.com/CuiJack" class="twitter-follow-button" data-show-count="false">Follow @CuiJack</a>
+
+
+  <iframe src="http://ghbtns.com/github-btn.html?user=popucui&type=follow"
+  allowtransparency="true" frameborder="0" scrolling="0" width="132" height="20"></iframe>
+
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="wrapper">
+<h2 class="archive-title tag">ubuntu</h2>
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/10/11/linux常用命令/">linux常用命令</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-10-11T15:13:13.000Z">Oct 11 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="git">git</h3><p>在github上参与别人的项目或则多人共同开发一个项目的话，fork一个项目的仓库过来，自己做完提交pull request之后，就等着作者review过之后进行merge了。但是之后作者再进行新的改动，我的分支上还是原样，那么怎样让把我的分支上的与最新的仓库一直呢?</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#assume you originally cloned from your forked repo,that remote will be called &#34;origin&#34;, &#10;#then you need to add firstguy repo as another remote&#10;git remote add firstguy git://github.com/firstguy/repo.git&#10;#After that is all set up, you should indeed be able to&#10;git pull firstguy mastergit push origin</span><br></pre></td></tr></table></figure>
+<h3 id="ubuntu_apt">ubuntu apt</h3><p>apt search</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># package search&#10;apt-cache search &#10;apt-cache show #------(package &#33719;&#21462;&#21253;&#30340;&#30456;&#20851;&#20449;&#24687;&#65292;&#22914;&#35828;&#26126;&#12289;&#22823;&#23567;&#12289;&#29256;&#26412;&#31561;)</span><br></pre></td></tr></table></figure>
+<p>apt install&amp;remove</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#package install&#10;sudo apt-get install &#10;sudo apt-get install # -----(package - - reinstall &#37325;&#26032;&#23433;&#35013;&#21253;)&#10;sudo apt-get -f install # -----(&#24378;&#21046;&#23433;&#35013;?#&#34;-f = --fix-missing&#34;&#24403;&#26159;&#20462;&#22797;&#23433;&#35013;&#21543;...)&#10;sudo apt-get remove #-----(package &#21024;&#38500;&#21253;)&#10;sudo apt-get remove - - purge # ------(package &#21024;&#38500;&#21253;&#65292;&#21253;&#25324;&#21024;&#38500;&#37197;&#32622;&#25991;&#20214;&#31561;)&#10;sudo apt-get autoremove --purge # ----(package &#21024;&#38500;&#21253;&#21450;&#20854;&#20381;&#36182;&#30340;&#36719;&#20214;&#21253;+&#37197;&#32622;&#25991;&#20214;&#31561;</span><br></pre></td></tr></table></figure>
+<p>apt update and more</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#update source&#10;sudo apt-get update &#10;sudo apt-get upgrade #------&#26356;&#26032;&#24050;&#23433;&#35013;&#30340;&#21253;&#10;sudo apt-get dist-upgrade # ---------&#21319;&#32423;&#31995;&#32479;&#10;sudo apt-get dselect-upgrade #------&#20351;&#29992; dselect &#21319;&#32423;&#10;apt-cache depends #-------(package &#20102;&#35299;&#20351;&#29992;&#20381;&#36182;)&#10;apt-cache rdepends # ------(package &#20102;&#35299;&#26576;&#20010;&#20855;&#20307;&#30340;&#20381;&#36182;?#&#24403;&#26159;&#26597;&#30475;&#35813;&#21253;&#34987;&#21738;&#20123;&#21253;&#20381;&#36182;&#21543;...)&#10;sudo apt-get build-dep # ------(package &#23433;&#35013;&#30456;&#20851;&#30340;&#32534;&#35793;&#29615;&#22659;)&#10;apt-get source #------(package &#19979;&#36733;&#35813;&#21253;&#30340;&#28304;&#20195;&#30721;)&#10;sudo apt-get clean &#38;&#38; sudo apt-get autoclean # --------&#28165;&#29702;&#19979;&#36733;&#25991;&#20214;&#30340;&#23384;&#26723; &#38;&#38; &#21482;&#28165;&#29702;&#36807;&#26102;&#30340;&#21253;&#10;sudo apt-get check #-------&#26816;&#26597;&#26159;&#21542;&#26377;&#25439;&#22351;&#30340;&#20381;&#36182;</span><br></pre></td></tr></table></figure>
+<p><strong>nohup</strong>: short for “no hang up”</p>
+<ul>
+<li>usage: nohup command &amp;</li>
+<li>default output: nohup.out which contains std out and std error, I refquently use this: <code>nohup sslocal &gt; log &amp;</code></li>
+</ul>
+<p>EOF</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/09/10/hello-again-ubuntu/">hello again ubuntu</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-10T10:48:24.000Z">Sep 10 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>我接触的第一个linux发行版就是基于ubuntu的Macbuntu，那时候还是10.04的时代，后来自己不小心弄坏了MBR，连Windows也进不去，捉了不少难，好在从此学会PE重建主引导的方法。之后进转投Fedora，直到现在又用回ubuntu。</p>
+<p>最主要的原因就是受够了Fedora那难看的字体，而从一开始ubuntu给我的印象就是漂亮，比windows漂亮，至于Mac吗，还没用过暂不置评。放弃Fedora还有一个原因是yum包管理也开始觉得不爽，每次我要search install软件，都要先更新下，前天安装HTSeq又遇到更新源频频出问题，慢的叫人抓狂。</p>
+<p>转到ubuntu之后，顺便也把博客从<a href="http://octopress.org/" target="_blank" rel="external">octopress</a>迁移到<a href="http://zespia.tw/hexo/" target="_blank" rel="external">hexo</a>。octopress是基于ruby的，而hexo基于node，速度比前者明显快多了，随着博客文章越来越多，我越来越在意这种差别。最后，把用到过得几个命令记下来：</p>
+<ul>
+<li><code>source somefile</code> reload the file,but only affect current session, will lose when restart terminal</li>
+<li><code>dpkg -i xxx.deb</code> install xxx soft which is in ubuntu deb format</li>
+<li><code>nvm use version num</code> use the specified version of node <code>nvm ls</code> list all installed versions of node</li>
+</ul>
+<p>EOF</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Jack
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'popucui';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<script type="text/javascript">
+(function(){
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

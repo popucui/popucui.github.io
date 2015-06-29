@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>use KOBAS to identify enriched pathways | popucui</title>
+  <meta name="author" content="Jack">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="use KOBAS to identify enriched pathways"/>
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="popucui" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40854037-1', 'null');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/books">Books</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+<div class="alignleft" style="margin-top: 15px">
+
+  <a href="https://twitter.com/CuiJack" class="twitter-follow-button" data-show-count="false">Follow @CuiJack</a>
+
+
+  <iframe src="http://ghbtns.com/github-btn.html?user=popucui&type=follow"
+  allowtransparency="true" frameborder="0" scrolling="0" width="132" height="20"></iframe>
+
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">use KOBAS to identify enriched pathways</h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-08T13:33:00.000Z">Sep 8 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a href="http://kobas.cbi.pku.edu.cn/home.do" target="_blank" rel="external">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
+<h3 id="ID_prepare">ID prepare</h3><p>我的基因号现在形如：</p>
+<ul>
+<li>AT1G01170</li>
+<li>AT1G01480</li>
+<li>AT1G01490</li>
+</ul>
+<p>我要把它转为：</p>
+<ul>
+<li>ath:AT1G01170</li>
+<li>ath:AT1G01480</li>
+<li>ath:AT1G01490</li>
+<li>ath:AT1G01610</li>
+</ul>
+<a id="more"></a>
+<p>这是uniProt识别的KEGG格式gene id,要几行python 代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">  <span class="keyword">with</span> open(<span class="string">'inputgene.txt'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    genelist = f.readlines()</span><br><span class="line">  <span class="keyword">for</span> g <span class="keyword">in</span> genelist:</span><br><span class="line">    g = <span class="string">'ath:'</span> + g.strip()</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'output.txt'</span>,<span class="string">'a'</span>) <span class="keyword">as</span> f:</span><br><span class="line">      f.write(q)</span><br><span class="line">      f.write(<span class="string">'\n'</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"convertion complete!"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="ID_mapping">ID mapping</h3><p>使用uniProt ID Mapping功能，源格式选KEGG，目标格式选uniprot KA(这也是KOBAS可识别的格式之一)。Mapping结束后，下载结果：</p>
+<ul>
+<li>From     To</li>
+<li>ath:AT1G01170     Q2HIQ2</li>
+<li>ath:AT1G01480     Q06402</li>
+<li>ath:AT1G01490     O03982</li>
+</ul>
+<p>我需要把第二列提取出来:</p>
+<ul>
+<li>Q2HIQ2</li>
+<li>Q06402</li>
+<li>O03982</li>
+</ul>
+<p>使用的python代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'uniportlist.txt'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">  genelist = f.readline()</span><br><span class="line"><span class="keyword">for</span> g <span class="keyword">in</span> genelist:</span><br><span class="line">  unip = re.search(<span class="string">r'\t(\S+)'</span>,g)</span><br><span class="line">  neog = unip.group(<span class="number">0</span>).strip()</span><br><span class="line">  <span class="keyword">with</span> open(<span class="string">'cleanlist.txt'</span>,<span class="string">'a'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(neog)</span><br><span class="line">    f.write(<span class="string">'\n'</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'extraction complete!'</span></span><br></pre></td></tr></table></figure></p>
+<p>接着就是选参数，run,然后identify enriched pathways</p>
+
+      
+    </div>
+    <footer>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+<section id="comment">
+          
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+  <h1 class="title">comment</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Jack
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'popucui';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<script type="text/javascript">
+(function(){
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

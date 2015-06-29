@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>perl | popucui</title>
+  <meta name="author" content="Jack">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="popucui" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40854037-1', 'null');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/books">Books</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+<div class="alignleft" style="margin-top: 15px">
+
+  <a href="https://twitter.com/CuiJack" class="twitter-follow-button" data-show-count="false">Follow @CuiJack</a>
+
+
+  <iframe src="http://ghbtns.com/github-btn.html?user=popucui&type=follow"
+  allowtransparency="true" frameborder="0" scrolling="0" width="132" height="20"></iframe>
+
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="wrapper">
+<h2 class="archive-title category">perl</h2>
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/04/25/maybe-a-mistake-in-learning-perl/">maybe a mistake in &#39;Learning Perl&#39;</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-04-25T14:56:00.000Z">Apr 25 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>最近开始学习perl，网上查加打听知道”Learning Perl”这本书很不错，被亲切地称为“小骆驼”。我读的是东南大学书版社第六版的影印版。今天看到chap11，遇到一个问题死活整不出来想要的结果。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/perl</span></span><br><span class="line"><span class="keyword">use</span> DateTime; </span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> <span class="variable">$dt1</span> = DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">1987</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">12</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">18</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> <span class="variable">$dt2</span> =DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">2013</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">5</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">1</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> <span class="variable">$duration</span> = <span class="variable">$dt2</span> - <span class="variable">$dt1</span>;</span><br><span class="line"><span class="keyword">my</span> <span class="variable">@units</span> = <span class="variable">$duration</span>-&gt;in_units( <span class="string">qw(years months days)</span> );  <span class="comment">#重点就在这里，书里面是单数，结果打印出来全是0，改成复数就ok了</span></span><br><span class="line"><span class="keyword">printf</span> <span class="string">"<span class="variable">%d</span> years, <span class="variable">%d</span> months, and <span class="variable">%d</span> days\n"</span>, <span class="variable">@units</span>;</span><br></pre></td></tr></table></figure>
+<p>今天到此收工， 明天还要早起。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Jack
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'popucui';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<script type="text/javascript">
+(function(){
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

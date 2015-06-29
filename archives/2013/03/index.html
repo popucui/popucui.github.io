@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>archive_b | popucui</title>
+  <meta name="author" content="Jack">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="popucui" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40854037-1', 'null');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/books">Books</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+<div class="alignleft" style="margin-top: 15px">
+
+  <a href="https://twitter.com/CuiJack" class="twitter-follow-button" data-show-count="false">Follow @CuiJack</a>
+
+
+  <iframe src="http://ghbtns.com/github-btn.html?user=popucui&type=follow"
+  allowtransparency="true" frameborder="0" scrolling="0" width="132" height="20"></iframe>
+
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="wrapper">
+<h2 class="archive-title">2013/3</h2>
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/03/31/a-workd-around-for-babel-key-error/">a work around for babel key error</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-03-31T02:02:00.000Z">Mar 31 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>When working on <a href="https://github.com/popucui/FHN" target="_blank" rel="external">this repo</a>, I tried to use flask-babel like  this:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask.ext.babel <span class="keyword">import</span> gettext, ngettext</span><br><span class="line">gettext(mystring)</span><br><span class="line">ngettext(singular, plural, period)</span><br></pre></td></tr></table></figure>
+<p>It began complaining to me with “key error: babel” when I test it. I tried these things, don’t work:</p>
+<ul>
+<li>reinstall babel</li>
+<li>virtualenv a fresh venv and install the package</li>
+<li>I google it, one guy had a similar bug befor when <a href="http://flask.pocoo.org/mailinglist/archive/2012/9/3/using-flask-wtf-with-flask-babel/#08408834f388b0adecf56a69c6058e8b" target="_blank" rel="external">using Flask-WTF with Flask-Babel</a> </li>
+</ul>
+<p>Finally I come up with a simple solution, and it work well for the time being. I use string format like this<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">u&#39;%d %s ago&#39; % (period, plural)</span><br></pre></td></tr></table></figure><br>plus ‘if’ contrl statments instead of ‘ngettext’. </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/03/22/basic-vim/">basic vim</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-03-22T00:46:00.000Z">Mar 22 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Vim is a powerful editer coming with linux.Here I assumes that you already know it’s history and also have a vim on linux or gvim under windows(although I recomend using vim with linux). So let’s begin our basic vim.</p>
+<h2 id="vimtutor">vimtutor</h2><p>open a console and type ‘vimtutor’, then you are in a vimtutor file right in vim. This is a vim tutorial disgned for learning vim on the fly. Learning has never been more efficient through using it. Just keep in mind that when you leave don’t save you change. The tutorial cover the basic usage of vim, such as insertion/deletion/navigation/replacing/searching. Believe me, once you learn it, you will love it.</p>
+<h2 id="vimperater/vimium">vimperater/vimium</h2><p>Afer you fall in love with vim, maybe you will think how about using vim when surfing internet, that sounds great, right? The short answer is there is already some extensions for firefox(vimperater) and chrome(vimum).All you need to do is searching for one you like and embrace it. very cool!</p>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/03/12/why-im-switching-back-to-firefox/">The biography of Steve Jobs:the reality distortion field</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-03-12T12:26:00.000Z">Mar 12 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Recently I’m reading “the biography of Steve Jobs”. Firstly, I have to admit that i have an instinct feeling that populer books may not worth its fame,that’s why when steve passed away and many people rushed into book store for this book, i restricted myself outside.</p>
+<p>Until yesterday i read a post from Ruan YiFeng’s blog introducing this book and admit that he should read it sooner. Indeed Mr Steve tremendously change the world of PC, phone and how we publish and read or listen have been completly changed.Before Apple, mobile phone is just a phone, that’s all it does and It seems that’s all people what people use it for. But now, you can hardly imagine life without a smart phone. Also, you won’t disagree that App Store is the biggest and most profitable electronic market on the planet.</p>
+<p>Many a person aroud Steve mention that there is a reality distortion field suround him. He had the magic to make Apple’s engineer acomplish something they themselves don’t believe they can. And yes, sometimes when there’s no way to convice ourselves by science, we attribute it to magic or religion. Someone see technology and art on Steve and products of Apple. Steve had a strict demanding for the product. The author mentioned a lot in the book. Steve told the engineer even the electronic wires should be arranged in order so that gives a beautifull looking. The engineer apparently did’t understand, just like us, asking “Why do we need to do this, our customers won’t see this”. Steve replied “But we-the creator do! think about this, would a good artisan bear his table’s back made up of bad wooden board? Even he know the customer using his table may never look at the back?” I clearly remmenber another story, one day Steve show up at one engineer who design Macintosh’s software system and asked “Can you reduce Mac’s boot up time by 10 secs?” At this time, the engineer’s facial expression reveals reluctance, then Steve told her “If Mac boot up 10 secs sooner, one person’s life will be saved, would you do it? Now Imagine our Mac sold 1 million, if everyone can boot up 10 secs less than before, would that amount of time deserve our effert?”</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Jack
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'popucui';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<script type="text/javascript">
+(function(){
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

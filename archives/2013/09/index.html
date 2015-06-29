@@ -1,0 +1,466 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>archive_b | popucui</title>
+  <meta name="author" content="Jack">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="popucui" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40854037-1', 'null');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/books">Books</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+<div class="alignleft" style="margin-top: 15px">
+
+  <a href="https://twitter.com/CuiJack" class="twitter-follow-button" data-show-count="false">Follow @CuiJack</a>
+
+
+  <iframe src="http://ghbtns.com/github-btn.html?user=popucui&type=follow"
+  allowtransparency="true" frameborder="0" scrolling="0" width="132" height="20"></iframe>
+
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="wrapper">
+<h2 class="archive-title">2013/9</h2>
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/09/23/differential-expression-for-rna-seq-data/">differential expression for RNA-Seq data</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-23T12:24:45.000Z">Sep 23 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>从<a href="http://www.rna-seqblog.com/" target="_blank" rel="external">rna-seqblog</a>看到<a href="http://genomebiology.com/2013/14/9/R95/abstract" target="_blank" rel="external">这篇paper</a>,他们对流行的寻找差异基因的方法多了评测，压根没提到DEGSeq,我看到在bioconductor上面，DEGSeq的下载量只有DESeq、edgeR的一半，所以人家说‘流行的’就把DEGSeq排除在外了。</p>
+<p>不过这里要说的主角是另一本书，在翻看前述论文时看到的，打来不禁有相见恨晚的感叹，<a href="http://link.springer.com/book/10.1007/978-1-4614-0782-9/page/1" target="_blank" rel="external">原书</a>还没看完，这里把里面的一些要点记录下来。</p>
+<h3 id="microarray和sequencing">microarray和sequencing</h3><p>RNA-Seq相比microarray的优点已经被谈得够多了，这里作者同样讲了RNA-Seq的不足：</p>
+<ul>
+<li>RNA-Seq数据有GC偏好</li>
+<li>mapping的不确定对基因组不同区域的影响是不一样的</li>
+<li>RNA-Seq比较不同处理下的基因表达水平有偏好性。RNA-Seq的统计方法对高counts的检测能力要比低counts强，也就是说RNA-Seq会倾向于将长度更长的基因算作差异（DE）基因。</li>
+<li>RNA-Seq的高灵敏性带来的问题是，提取、富集RNA，RNA片段化和转化成cDNA的过程中都有更大的带来偏差的可能。如小RNA提取的方法强烈影响得到的序列集合。</li>
+<li>RNA-Seq数据更复杂，数据分析可能是瓶颈。</li>
+</ul>
+<h3 id="mapping">mapping</h3><p>主要有两类方法：基于hash-tables;基于Burrows Wheeler Transform</p>
+<ul>
+<li>hash-tables优点是可以找出用户指定的所有structural variants,确定是内存要求高。</li>
+<li>BWT相比前者使用内存更经济，缺点是，BWT确认错配的方法涉及把每个read的大量可能组合进行比对，二这需要相当大的计算量。很多实现方法对此的处理是，不穷尽所有错配比对，这也就意味着一些正确的比对丢失了。</li>
+</ul>
+<h3 id="RNA-Seq实验设计">RNA-Seq实验设计</h3><ul>
+<li>生物学重复重要性：如果我们比较一个癌症组织和一个正常组织，那么我们下的任何一个结论都不能推广到其癌组织群和正常组织群，因为分析过程没有考虑癌组织与癌组子和正常组织与正常组织间潜在的巨大差异。我们的结论仅适用于该研究的样本。</li>
+<li>上样的时候要考虑到不同lane，不同flow cell之间存在的系统差异</li>
+<li>reads长度的确定。更长的reads花费多，但map到trancriptome会更多，对外显子-外显子间连接区分能力更强，发现更多的遗传变异，但是DE的发现来自reads密度，而不是序列覆盖度。总之，是用更长的reads来换取‘mappability’，还是用更深的测序深度换取更多的reads密度呢？作者给的答案是，投资与‘mappability’所获通常比较小。</li>
+<li>paried-end reads: PE-reads可以有更多的reads map到转录组或基因组上，有助于发现结构变异，然而PE-reads带来的更多花费并不能增加检测DE的强度。</li>
+</ul>
+<p>EOF</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/09/18/generate-venn-diagram-in-r/">generate venn diagram in R</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-18T14:35:57.000Z">Sep 18 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Our DGE project report provide a differently expressing genes list which is infered using DEGseq. When I was trying to follow the analysis pipline, I found that DEGseq has a so simple document that I cannot even figure out how to apply the function in my work, then I turn to DESeq, which provide a very good document with explanation of options and typical cases. Now I have to DG(Different Gene)lists: one from NOvogene, another is mine(generated by DESeq). Some genes are the same in them, while some not. My goal is to identify the same and plot a venn diagram. Here is the outline:</p>
+<ul>
+<li>idnetify the same genes, calculate the number of same and different genes.</li>
+<li>draw a venn diagram in R to display above result.</li>
+</ul>
+<p>DEGseq list has 2k+ genes, and my DESeq list has 1230 genes, obviously I need a quick script to compare each gene in DESeq and remember the number of genes in both.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dfgnlist1 = sys.argv[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">dfgnlist2 = sys.argv[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(dfgnlist2, <span class="string">'r'</span>) <span class="keyword">as</span> deg:</span><br><span class="line"></span><br><span class="line">  dfgn2 = deg.readlines()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(dfgnlist1,<span class="string">'r'</span>) <span class="keyword">as</span> de:</span><br><span class="line"></span><br><span class="line">  dfgn1 =de.readlines()</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">j = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> g <span class="keyword">in</span> dfgn1:</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> g <span class="keyword">in</span> dfgn2:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"samegenes.txt"</span>,<span class="string">'a'</span>) <span class="keyword">as</span> samegenes:</span><br><span class="line"></span><br><span class="line">      samegenes.write(g)</span><br><span class="line"></span><br><span class="line">      i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"dfgenes.txt"</span>,<span class="string">'a'</span>) <span class="keyword">as</span> dfgenes:</span><br><span class="line"></span><br><span class="line">      dfgenes.write(g)</span><br><span class="line"></span><br><span class="line">      j += <span class="number">1</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'========'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> i, <span class="string">'same genes'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> j, <span class="string">'different genes'</span></span><br></pre></td></tr></table></figure><br>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/09/14/using-htseq/">using HTSeq</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-14T00:29:50.000Z">Sep 14 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>用tophat做完mapping之后，接下来就是count reads，<a href="http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html" target="_blank" rel="external">HTSeq</a>的文档很详细，还有一个use case，除了这个case，其他的全部跟着走了一遍。接下来使用htseq-qa和htseq-count的时候，遇到了问题，记录在这里：</p>
+<h3 id="htseq-qa">htseq-qa</h3><p>安装了HTSeq后，htseq-qa的使用也很简单：</p>
+<ul>
+<li><code>htseq-qa [options] read_file</code> #assumes htseq is in your PATH</li>
+<li><code>python -m HTSeq.scripts.qa [options] read_file</code> #if htseq is not in your PATH</li>
+</ul>
+<p>检查clean data的时候很顺利，在read_file是Col_0的raw data时，遇到了问题，原因是raw data里面有的reads quality string信息不完整，尝试过删除该reads或者把reads quality数据补全，都不成。</p>
+<h3 id="htseq-count">htseq-count</h3><p>htseq-count的使用与qa类似，如果htseq不再你的PATH，可以这样：<code>python -m HTSeq.scripts.count [options] &lt;sam_file&gt; &lt;gff_file&gt;</code>。我遇到的问题有两个：</p>
+<ol>
+<li>tophat输出的是BAM格式的结果，而htseq-count需要SAM格式的比对结果，首先要转换，这个用samtools就行了：<code>samtools view col.bam &gt;&gt; col.sam</code> samtools默认的输入就是BAM格式，这里用重定向将屏幕输出写入col.sam</li>
+<li>然后运行htseq-count报错：”ValueError: The attribute string seems to contain mismatched quotes”.搜了下，报错的行里面’gene_name’id含有多余的分号，手工修改了几次，还是报同样的错。这时候需要写一个脚本了：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">input_file = sys.argv[<span class="number">1</span>]</span><br><span class="line">output_file = sys.argv[<span class="number">2</span>]</span><br><span class="line">j = <span class="number">0</span></span><br><span class="line"><span class="keyword">with</span> open(input_file, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">  <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</span><br><span class="line">    gene_name = re.search(<span class="string">r'gene_name\s(\S+)'</span>,line)</span><br><span class="line">    gene_id = gene_name.group(<span class="number">1</span>)</span><br><span class="line">    match = re.search(<span class="string">r'(\w+);(\w+)'</span>, gene_id)</span><br><span class="line">    <span class="keyword">if</span> match:</span><br><span class="line">      newid = <span class="string">''</span>.join([<span class="string">'"'</span>, match.group(<span class="number">1</span>), match.group(<span class="number">2</span>), <span class="string">'"'</span>, <span class="string">';'</span>])</span><br><span class="line">      newline = line.replace(gene_id, newid)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      newline = line</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open(output_file, <span class="string">'a'</span>) <span class="keyword">as</span> newf:</span><br><span class="line">      newf.write(newline)</span><br><span class="line">      j += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'totaly'</span>, j, <span class="string">'number of lines modified!'</span></span><br></pre></td></tr></table></figure>
+<p>得到正确格式的gtf之后，就可以count了：<code>python -m HTSeq.scripts.count -m intersection-nonempty -s no sam_file gtf_file &gt;&gt; samplecount</code> 需要注意的事这里’-s’选项默认是’yes’,所以如果样品建库不是连特异性的话，一定要加<code>-s no</code>,要不有一半的reads就浪费了。另外就是把count结果写入文件，以备之后分析。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/09/10/hello-again-ubuntu/">hello again ubuntu</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-10T10:48:24.000Z">Sep 10 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>我接触的第一个linux发行版就是基于ubuntu的Macbuntu，那时候还是10.04的时代，后来自己不小心弄坏了MBR，连Windows也进不去，捉了不少难，好在从此学会PE重建主引导的方法。之后进转投Fedora，直到现在又用回ubuntu。</p>
+<p>最主要的原因就是受够了Fedora那难看的字体，而从一开始ubuntu给我的印象就是漂亮，比windows漂亮，至于Mac吗，还没用过暂不置评。放弃Fedora还有一个原因是yum包管理也开始觉得不爽，每次我要search install软件，都要先更新下，前天安装HTSeq又遇到更新源频频出问题，慢的叫人抓狂。</p>
+<p>转到ubuntu之后，顺便也把博客从<a href="http://octopress.org/" target="_blank" rel="external">octopress</a>迁移到<a href="http://zespia.tw/hexo/" target="_blank" rel="external">hexo</a>。octopress是基于ruby的，而hexo基于node，速度比前者明显快多了，随着博客文章越来越多，我越来越在意这种差别。最后，把用到过得几个命令记下来：</p>
+<ul>
+<li><code>source somefile</code> reload the file,but only affect current session, will lose when restart terminal</li>
+<li><code>dpkg -i xxx.deb</code> install xxx soft which is in ubuntu deb format</li>
+<li><code>nvm use version num</code> use the specified version of node <code>nvm ls</code> list all installed versions of node</li>
+</ul>
+<p>EOF</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/09/08/use-kobas-to-identify-enriched-pathways/">use KOBAS to identify enriched pathways</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-08T13:33:00.000Z">Sep 8 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a href="http://kobas.cbi.pku.edu.cn/home.do">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
+<h3 id="ID_prepare">ID prepare</h3><p>我的基因号现在形如：</p>
+<ul>
+<li>AT1G01170</li>
+<li>AT1G01480</li>
+<li>AT1G01490</li>
+</ul>
+<p>我要把它转为：</p>
+<ul>
+<li>ath:AT1G01170</li>
+<li>ath:AT1G01480</li>
+<li>ath:AT1G01490</li>
+<li>ath:AT1G01610</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/09/07/tophat-install-and-usage-note/">tophat install and usage note</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-07T04:15:00.000Z">Sep 7 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="install_tophat">install tophat</h3><p>I got our RNA-seq all data a couple of days ago, after playing with python keggrest package grabing KEGG anotaion data some while, I decided to try installing tophat on my PC and run mapping with real project data.</p>
+<p>Generally just follow the instructions on tophat’s <a href="http://tophat.cbcb.umd.edu/tutorial.shtml" target="_blank" rel="external">offical page</a> is enough. Some points are listed below:</p>
+<ul>
+<li><p>bowtie. Download and unpack the latest bowtie2, copy it to somewhere you wish, and most importanly add ‘bowtie2’ ‘bowtie2-build’ and ‘bowtie2-inspect’ to your $PATH like this: <code>export PATH=$PATH:/home/popcui/bio/bowtie*</code> A better way to do this is <code>echo</code> previous command to ‘~/.bashrc’</p>
+</li>
+<li><p>You can either download the precompiled binary release which is more convinent but mybe a little bit slow, or you build tophat from source. And before that, you need to install SAM tools</p>
+</li>
+<li><p>SAM tools. First download SAM tools, then <code>make</code> it(you may want to check the INSTALL file for more info) You can add <code>make razip</code> option <strong>note</strong>: do not forget to add copy SAM tools misc bcftools to a path you wish and add it to your $PATH.</p>
+</li>
+</ul>
+<p>Now if everything is OK, download the test data and fire up tophat on it to make sure all work as expected.</p>
+<h3 id="prepare_your_reference">prepare your reference</h3><p>If you have bowtie2 installed and want to use it with tophat2, you must create Bowtie2 indexes for your data using Bowtie2-build. For me, as I already have ref.gtf and ref.fa in hand, all I need to do is <code>bowtie2-build ./rna-data/ref.fa ./bt2/ref.fa</code> Reference genome .fa file comes first, and the indexes I want to build will be saved to ‘./bt2/ref.fa’</p>
+<p>Now we have everything ready, let’s begin mapping right away.<code>tophat2 -p 4 -G ./rna-data/ref.gtf -o col_th ./bt2/ref.fa ./rna-data/Col_0.clean.fq</code> ‘-p’ specify the number of threads you want to use, since I have an i3-380 cpu which support virtual threading, I use 4 cpus.’-G’ stands for genes and transcripts anotation. ‘-o’ obviously imply the path you want to have output files saved, then comes reference genome file and input clean data.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Jack
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'popucui';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<script type="text/javascript">
+(function(){
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
