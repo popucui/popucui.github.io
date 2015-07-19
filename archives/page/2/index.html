@@ -93,6 +93,63 @@
     <header>
       
   
+    <h1 class="title"><a href="/2013/09/07/tophat-install-and-usage-note/">tophat install and usage note</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-07T04:15:00.000Z">Sep 7 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="install_tophat">install tophat</h3><p>I got our RNA-seq all data a couple of days ago, after playing with python keggrest package grabing KEGG anotaion data some while, I decided to try installing tophat on my PC and run mapping with real project data.</p>
+<p>Generally just follow the instructions on tophat’s <a href="http://tophat.cbcb.umd.edu/tutorial.shtml" target="_blank" rel="external">offical page</a> is enough. Some points are listed below:</p>
+<ul>
+<li><p>bowtie. Download and unpack the latest bowtie2, copy it to somewhere you wish, and most importanly add ‘bowtie2’ ‘bowtie2-build’ and ‘bowtie2-inspect’ to your $PATH like this: <code>export PATH=$PATH:/home/popcui/bio/bowtie*</code> A better way to do this is <code>echo</code> previous command to ‘~/.bashrc’</p>
+</li>
+<li><p>You can either download the precompiled binary release which is more convinent but mybe a little bit slow, or you build tophat from source. And before that, you need to install SAM tools</p>
+</li>
+<li><p>SAM tools. First download SAM tools, then <code>make</code> it(you may want to check the INSTALL file for more info) You can add <code>make razip</code> option <strong>note</strong>: do not forget to add copy SAM tools misc bcftools to a path you wish and add it to your $PATH.</p>
+</li>
+</ul>
+<p>Now if everything is OK, download the test data and fire up tophat on it to make sure all work as expected.</p>
+<h3 id="prepare_your_reference">prepare your reference</h3><p>If you have bowtie2 installed and want to use it with tophat2, you must create Bowtie2 indexes for your data using Bowtie2-build. For me, as I already have ref.gtf and ref.fa in hand, all I need to do is <code>bowtie2-build ./rna-data/ref.fa ./bt2/ref.fa</code> Reference genome .fa file comes first, and the indexes I want to build will be saved to ‘./bt2/ref.fa’</p>
+<p>Now we have everything ready, let’s begin mapping right away.<code>tophat2 -p 4 -G ./rna-data/ref.gtf -o col_th ./bt2/ref.fa ./rna-data/Col_0.clean.fq</code> ‘-p’ specify the number of threads you want to use, since I have an i3-380 cpu which support virtual threading, I use 4 cpus.’-G’ stands for genes and transcripts anotation. ‘-o’ obviously imply the path you want to have output files saved, then comes reference genome file and input clean data.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2013/08/21/how-to-get-help-on-python-console/">how to get help on python console</a></h1>
   
 
@@ -512,52 +569,6 @@
 </ul>
 <p>写得有点儿乱，归根结底就是想说，做事除了目的性很强的，有时候还有这样一类人，他们给你打电话，就是想听听你的声音，想知道你在干吗。他们哪怕想在艾菲尔铁塔上小便，也只是这样，他们是很纯粹的、简单的一类人。</p>
 
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-  
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2013/04/05/shu-ben-zhi-shang/">书本之上</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2013-04-05T00:40:00.000Z">Apr 5 2013</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <p>昨天读了字节社的新书《Tim O’Reilly in a Nutshell》其中的“书本之上”这篇心有共鸣。Tim在其中提到，他们考虑出版什么书，首先考虑的从来不是能赚多少钱，而是有没有用，而这样最终书的销量也不用担心了。</p>
-<p>这样我想很久以前看到柯达中国的中国区领导（名字忘记了）说过的类似的话，不要奔着钱去做事，做你喜欢的事，最后你会发现同时也得到了钱。这起中的道理不言自明，而困难的是生活中会有各种诱惑，让你偏离本来的方向，有时忘了自己当初的目标。</p>
-<p>关于”是做喜欢的事还是试着喜欢你做的事“我自己想过，也和我哥讨论过。老大说”这个问题太复杂“，老二说”很简单，先生存下来“。老实说，他俩的回答我都不满意。老大其实没有给出答案，老二说的貌似也挺有道理的，很现实的，先养活自己再说。可是然后呢？先做好必须做的工作，同时不忘自己的愿想，业余时间苦练。我想起在v2ex上看到一个人的博客里这句话”keep coding, keep thinking, planning future, doing now”。找到自己毕生从事的事是幸福的，越早越好，就好比第二次生命一样，从此后眼前会大不一样，你每天起床想到不用想就去做自己的事。就想这句话说的”每天早上被梦想叫醒“。<br>
       
     </div>
     <footer>

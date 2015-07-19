@@ -93,6 +93,51 @@
     <header>
       
   
+    <h1 class="title"><a href="/2015/07/19/test/">test</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2015-07-19T00:44:39.000Z">Jul 19 2015</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>just test here</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2013/11/24/retrieving-and-sending-infomation-over-the-web/">retrieving and sending infomation over the web</a></h1>
   
 
@@ -562,63 +607,6 @@
 <li>ath:AT1G01490</li>
 <li>ath:AT1G01610</li>
 </ul>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-  
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2013/09/07/tophat-install-and-usage-note/">tophat install and usage note</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2013-09-07T04:15:00.000Z">Sep 7 2013</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <h3 id="install_tophat">install tophat</h3><p>I got our RNA-seq all data a couple of days ago, after playing with python keggrest package grabing KEGG anotaion data some while, I decided to try installing tophat on my PC and run mapping with real project data.</p>
-<p>Generally just follow the instructions on tophat’s <a href="http://tophat.cbcb.umd.edu/tutorial.shtml" target="_blank" rel="external">offical page</a> is enough. Some points are listed below:</p>
-<ul>
-<li><p>bowtie. Download and unpack the latest bowtie2, copy it to somewhere you wish, and most importanly add ‘bowtie2’ ‘bowtie2-build’ and ‘bowtie2-inspect’ to your $PATH like this: <code>export PATH=$PATH:/home/popcui/bio/bowtie*</code> A better way to do this is <code>echo</code> previous command to ‘~/.bashrc’</p>
-</li>
-<li><p>You can either download the precompiled binary release which is more convinent but mybe a little bit slow, or you build tophat from source. And before that, you need to install SAM tools</p>
-</li>
-<li><p>SAM tools. First download SAM tools, then <code>make</code> it(you may want to check the INSTALL file for more info) You can add <code>make razip</code> option <strong>note</strong>: do not forget to add copy SAM tools misc bcftools to a path you wish and add it to your $PATH.</p>
-</li>
-</ul>
-<p>Now if everything is OK, download the test data and fire up tophat on it to make sure all work as expected.</p>
-<h3 id="prepare_your_reference">prepare your reference</h3><p>If you have bowtie2 installed and want to use it with tophat2, you must create Bowtie2 indexes for your data using Bowtie2-build. For me, as I already have ref.gtf and ref.fa in hand, all I need to do is <code>bowtie2-build ./rna-data/ref.fa ./bt2/ref.fa</code> Reference genome .fa file comes first, and the indexes I want to build will be saved to ‘./bt2/ref.fa’</p>
-<p>Now we have everything ready, let’s begin mapping right away.<code>tophat2 -p 4 -G ./rna-data/ref.gtf -o col_th ./bt2/ref.fa ./rna-data/Col_0.clean.fq</code> ‘-p’ specify the number of threads you want to use, since I have an i3-380 cpu which support virtual threading, I use 4 cpus.’-G’ stands for genes and transcripts anotation. ‘-o’ obviously imply the path you want to have output files saved, then comes reference genome file and input clean data.</p>
-
       
     </div>
     <footer>
