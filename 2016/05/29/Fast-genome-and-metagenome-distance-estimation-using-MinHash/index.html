@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>archive_b | popucui</title>
+  <title>Fast genome and metagenome distance estimation using MinHash | popucui</title>
   <meta name="author" content="Jack">
   
   <meta name="description" content="Bioinformatics | Computer">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Fast genome and metagenome distance estimation using MinHash"/>
   <meta property="og:site_name" content="popucui"/>
 
   
@@ -58,12 +58,7 @@
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="wrapper">
-<h2 class="archive-title">2016</h2>
-
-
-  
-    <article class="post">
+    <div id="wrapper"><article class="post">
   
     <div class="gallery">
   <div class="photoset">
@@ -81,7 +76,7 @@
     <header>
       
   
-    <h1 class="title"><a href="/2016/05/29/Fast-genome-and-metagenome-distance-estimation-using-MinHash/">Fast genome and metagenome distance estimation using MinHash</a></h1>
+    <h1 class="title">Fast genome and metagenome distance estimation using MinHash</h1>
   
 
       
@@ -98,84 +93,17 @@
     </div>
     <footer>
       
-        
-
-
-
-
-      
       <div class="clearfix"></div>
     </footer>
   </div>
 </article>
 <!-- hackish -->
 
-
-  
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2016/02/03/parsing-ABI-file/">parsing ABI file</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2016-02-03T14:45:00.000Z">Feb 3 2016</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <p>ABI测序仪下机的结果包含.ab1和.seq文件，通常可以导入BioEdit这样的图形化软件检查峰形和运行blast，而如果想要实现自动化的检测杂合位点并做比对，最终得到变异位点，就需要花些时间研究下。</p>
-<p>主要的问题是，ab1文件是二进制的，关于文件格式的文档稀少，唯一靠谱的是<a href="http://www.appliedbiosystems.com/support/software_community/ABIF_File_Format.pdf" target="_blank" rel="external">ABI的官方文档</a> 仔细看过这个文档你会发现，看完之后作为新手的你尽管对于这个格式有所了解，知道它分为Header、Directory以及Data，以及有很多的tag。但知道这些对于想要从ab1提取trace value并进行heterogeneous base calling是远远不够的。所好的是，已经有人有过类似需求并作了尝试。</p>
-<ul>
-<li><p><a href="https://github.com/bow/abifpy" target="_blank" rel="external">abifpy</a> 实现的一个解析ab1文件的模块，现已并入BioPython。优点是兼容Python2和Python3，部分meta data已经给你提取出来了，而如果想要更多，可以使用get_data(‘<em>youkey</em>‘)获取。</p>
-</li>
-<li><p>如果只需要取出每个通道的trace value，有了官方文档和abifpy就够了，如果还想学习更多，可以读一读<a href="https://code.google.com/archive/p/seqtrace/" target="_blank" rel="external">SeqTrace</a>源码，从中可以学到怎样组织一个项目的代码，以及怎么写测试。</p>
-</li>
-<li><p>前面两个都研究一番之后，还是不能满足你的好奇心？可以把<a href="http://sourceforge.net/projects/staden/files/io_lib/" target="_blank" rel="external">io lib</a>这个库研究下，学习使用它的API.</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
+  <!-- 多说评论框 start -->
+<!-- 多说公共JS代码 end -->
 
 
 
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-
-  
-
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
 </div>
     <div class="clearfix"></div>
   </div>

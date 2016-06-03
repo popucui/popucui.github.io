@@ -77,6 +77,57 @@
     <header>
       
   
+    <h1 class="title"><a href="/2013/04/25/maybe-a-mistake-in-learning-perl/">maybe a mistake in &#39;Learning Perl&#39;</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-04-25T14:56:00.000Z">Apr 25 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>最近开始学习perl，网上查加打听知道”Learning Perl”这本书很不错，被亲切地称为“小骆驼”。我读的是东南大学书版社第六版的影印版。今天看到chap11，遇到一个问题死活整不出来想要的结果。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/perl</span></span><br><span class="line"><span class="keyword">use</span> DateTime; </span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> <span class="variable">$dt1</span> = DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">1987</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">12</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">18</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> <span class="variable">$dt2</span> =DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">2013</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">5</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">1</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> <span class="variable">$duration</span> = <span class="variable">$dt2</span> - <span class="variable">$dt1</span>;</span><br><span class="line"><span class="keyword">my</span> <span class="variable">@units</span> = <span class="variable">$duration</span>-&gt;in_units( <span class="string">qw(years months days)</span> );  <span class="comment">#重点就在这里，书里面是单数，结果打印出来全是0，改成复数就ok了</span></span><br><span class="line"><span class="keyword">printf</span> <span class="string">"<span class="variable">%d</span> years, <span class="variable">%d</span> months, and <span class="variable">%d</span> days\n"</span>, <span class="variable">@units</span>;</span><br></pre></td></tr></table></figure>
+<p>今天到此收工， 明天还要早起。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2013/04/12/zhi-shi-xiang-da-gei-ni/">只是想打给你</a></h1>
   
 

@@ -81,6 +81,63 @@
     <header>
       
   
+    <h1 class="title"><a href="/2013/09/10/hello-again-ubuntu/">hello again ubuntu</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-10T10:48:24.000Z">Sep 10 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>我接触的第一个linux发行版就是基于ubuntu的Macbuntu，那时候还是10.04的时代，后来自己不小心弄坏了MBR，连Windows也进不去，捉了不少难，好在从此学会PE重建主引导的方法。之后进转投Fedora，直到现在又用回ubuntu。</p>
+<p>最主要的原因就是受够了Fedora那难看的字体，而从一开始ubuntu给我的印象就是漂亮，比windows漂亮，至于Mac吗，还没用过暂不置评。放弃Fedora还有一个原因是yum包管理也开始觉得不爽，每次我要search install软件，都要先更新下，前天安装HTSeq又遇到更新源频频出问题，慢的叫人抓狂。</p>
+<p>转到ubuntu之后，顺便也把博客从<a href="http://octopress.org/" target="_blank" rel="external">octopress</a>迁移到<a href="http://zespia.tw/hexo/" target="_blank" rel="external">hexo</a>。octopress是基于ruby的，而hexo基于node，速度比前者明显快多了，随着博客文章越来越多，我越来越在意这种差别。最后，把用到过得几个命令记下来：</p>
+<ul>
+<li><code>source somefile</code> reload the file,but only affect current session, will lose when restart terminal</li>
+<li><code>dpkg -i xxx.deb</code> install xxx soft which is in ubuntu deb format</li>
+<li><code>nvm use version num</code> use the specified version of node <code>nvm ls</code> list all installed versions of node</li>
+</ul>
+<p>EOF</p>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2013/09/08/use-kobas-to-identify-enriched-pathways/">use KOBAS to identify enriched pathways</a></h1>
   
 
@@ -543,57 +600,6 @@
 <li>acer也太不厚道了，你节省成本可以理解，但是至少也弄一个带图形桌面的linux发行版吧，弄一个只有命令行的linux来凑数对用户不负责。</li>
 <li>还在固守win xp的人们，今天离xp 停止支持还有332天，朋友这台本，acer 官网上没有提供xp的驱动了。</li>
 </ul>
-
-      
-    </div>
-    <footer>
-      
-        
-
-
-
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-
-  
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2013/04/25/maybe-a-mistake-in-learning-perl/">maybe a mistake in &#39;Learning Perl&#39;</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2013-04-25T14:56:00.000Z">Apr 25 2013</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <p>最近开始学习perl，网上查加打听知道”Learning Perl”这本书很不错，被亲切地称为“小骆驼”。我读的是东南大学书版社第六版的影印版。今天看到chap11，遇到一个问题死活整不出来想要的结果。</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/perl</span></span><br><span class="line"><span class="keyword">use</span> DateTime; </span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> <span class="variable">$dt1</span> = DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">1987</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">12</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">18</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> <span class="variable">$dt2</span> =DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">2013</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">5</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">1</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> <span class="variable">$duration</span> = <span class="variable">$dt2</span> - <span class="variable">$dt1</span>;</span><br><span class="line"><span class="keyword">my</span> <span class="variable">@units</span> = <span class="variable">$duration</span>-&gt;in_units( <span class="string">qw(years months days)</span> );  <span class="comment">#重点就在这里，书里面是单数，结果打印出来全是0，改成复数就ok了</span></span><br><span class="line"><span class="keyword">printf</span> <span class="string">"<span class="variable">%d</span> years, <span class="variable">%d</span> months, and <span class="variable">%d</span> days\n"</span>, <span class="variable">@units</span>;</span><br></pre></td></tr></table></figure>
-<p>今天到此收工， 明天还要早起。</p>
 
       
     </div>
