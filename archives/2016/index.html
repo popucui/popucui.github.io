@@ -81,6 +81,73 @@
     <header>
       
   
+    <h1 class="title"><a href="/2016/06/05/setup-and-run-PIPS-to-identify-Putative-Pathogenicity-Islands/">setup and run PIPS to identify Putative Pathogenicity Islands</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2016-06-04T22:16:21.000Z">Jun 5 2016</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Recently I need to do PAI search using <a href="http://www.genoma.ufpa.br/lgcm/pips/" target="_blank" rel="external">PIPS</a>, after going throught all the little traps, I think it worth to write the whole process down.</p>
+<ol>
+<li>follow the README instructions to install hammer and tRNA-scan. Maybe you want to change the default prefix of INSTALL derectory</li>
+<li>Theoretically, it should be good enough to run, but you’ll definitely be stuck at some point. OK, here are the tricks to try below</li>
+<li>replace <code>gbk2embl.pl</code> with a new one, such as this:</li>
+</ol>
+<pre><code><span class="comment">#!/usr/bin/env perl</span>
+<span class="keyword">use</span> <span class="title">strict</span>;
+<span class="keyword">use</span> <span class="title">warnings</span>;
+<span class="keyword">use</span> <span class="title">Bio</span>::<span class="title">SeqIO</span>;
+
+<span class="keyword">if</span> (@ARGV != <span class="number">2</span>) {    <span class="keyword">die</span> <span class="string">"USAGE: gb2embl.pl &lt;in.gbk&gt; &lt;out.embl&gt;\n"</span>; }
+
+my <span class="variable">$seqio</span> = Bio::SeqIO-&gt;new(<span class="string">'-format'</span> =&gt; <span class="string">'genbank'</span>, <span class="string">'-file'</span> =&gt; <span class="string">"$ARGV[0]"</span>);
+my <span class="variable">$seqout</span> = <span class="keyword">new</span> Bio::SeqIO(<span class="string">'-format'</span> =&gt; <span class="string">'embl'</span>, <span class="string">'-file'</span> =&gt; <span class="string">"&gt;$ARGV[1]"</span>);
+<span class="keyword">while</span>( my <span class="variable">$seq</span> = <span class="variable">$seqio</span>-&gt;next_seq) {
+  <span class="variable">$seqout</span>-&gt;write_seq(<span class="variable">$seq</span>)
+}
+</code></pre><p>For the last step, modify <code>mergfiles.pl</code>. change for e.g. <code>%hash2-&gt;{$chave}</code> to <code>$hash2{$chave}</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2016/05/29/Fast-genome-and-metagenome-distance-estimation-using-MinHash/">Fast genome and metagenome distance estimation using MinHash</a></h1>
   
 
@@ -93,6 +160,9 @@
     <div class="entry">
       
         <p><a href="http://mash.readthedocs.org" target="_blank" rel="external">mash</a> 是一个可快速计算两个（或多个）基因组之间相似度的软件，可输入基因组序列或测序结果（fastq文件），使用计算机科学中一个经典的方法MinHash，一般用来判断两个网页内容是否雷同，以决定是否从搜索结果中去掉某些类似的结果。</p>
+<p>使用示例：</p>
+<p><code>mash dist -p 4 -l 、/path/to/ref.fa query_fa.txt &gt; query_mashed.txt</code></p>
+<p>用于计算所有query序列和ref序列的相似度，而相似度和物种间的亲缘关系是相关的，其中<query_fa.txt> 是一个记录了所有query序列的文件</query_fa.txt></p>
 
       
     </div>

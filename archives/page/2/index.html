@@ -81,6 +81,68 @@
     <header>
       
   
+    <h1 class="title"><a href="/2013/09/14/using-htseq/">using HTSeq</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-09-14T00:29:50.000Z">Sep 14 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>用tophat做完mapping之后，接下来就是count reads，<a href="http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html" target="_blank" rel="external">HTSeq</a>的文档很详细，还有一个use case，除了这个case，其他的全部跟着走了一遍。接下来使用htseq-qa和htseq-count的时候，遇到了问题，记录在这里：</p>
+<h3 id="htseq-qa">htseq-qa</h3><p>安装了HTSeq后，htseq-qa的使用也很简单：</p>
+<ul>
+<li><code>htseq-qa [options] read_file</code> #assumes htseq is in your PATH</li>
+<li><code>python -m HTSeq.scripts.qa [options] read_file</code> #if htseq is not in your PATH</li>
+</ul>
+<p>检查clean data的时候很顺利，在read_file是Col_0的raw data时，遇到了问题，原因是raw data里面有的reads quality string信息不完整，尝试过删除该reads或者把reads quality数据补全，都不成。</p>
+<h3 id="htseq-count">htseq-count</h3><p>htseq-count的使用与qa类似，如果htseq不再你的PATH，可以这样：<code>python -m HTSeq.scripts.count [options] &lt;sam_file&gt; &lt;gff_file&gt;</code>。我遇到的问题有两个：</p>
+<ol>
+<li>tophat输出的是BAM格式的结果，而htseq-count需要SAM格式的比对结果，首先要转换，这个用samtools就行了：<code>samtools view col.bam &gt;&gt; col.sam</code> samtools默认的输入就是BAM格式，这里用重定向将屏幕输出写入col.sam</li>
+<li>然后运行htseq-count报错：”ValueError: The attribute string seems to contain mismatched quotes”.搜了下，报错的行里面’gene_name’id含有多余的分号，手工修改了几次，还是报同样的错。这时候需要写一个脚本了：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">input_file = sys.argv[<span class="number">1</span>]</span><br><span class="line">output_file = sys.argv[<span class="number">2</span>]</span><br><span class="line">j = <span class="number">0</span></span><br><span class="line"><span class="keyword">with</span> open(input_file, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">  <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</span><br><span class="line">    gene_name = re.search(<span class="string">r'gene_name\s(\S+)'</span>,line)</span><br><span class="line">    gene_id = gene_name.group(<span class="number">1</span>)</span><br><span class="line">    match = re.search(<span class="string">r'(\w+);(\w+)'</span>, gene_id)</span><br><span class="line">    <span class="keyword">if</span> match:</span><br><span class="line">      newid = <span class="string">''</span>.join([<span class="string">'"'</span>, match.group(<span class="number">1</span>), match.group(<span class="number">2</span>), <span class="string">'"'</span>, <span class="string">';'</span>])</span><br><span class="line">      newline = line.replace(gene_id, newid)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      newline = line</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open(output_file, <span class="string">'a'</span>) <span class="keyword">as</span> newf:</span><br><span class="line">      newf.write(newline)</span><br><span class="line">      j += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'totaly'</span>, j, <span class="string">'number of lines modified!'</span></span><br></pre></td></tr></table></figure>
+<p>得到正确格式的gtf之后，就可以count了：<code>python -m HTSeq.scripts.count -m intersection-nonempty -s no sam_file gtf_file &gt;&gt; samplecount</code> 需要注意的事这里’-s’选项默认是’yes’,所以如果样品建库不是连特异性的话，一定要加<code>-s no</code>,要不有一半的reads就浪费了。另外就是把count结果写入文件，以备之后分析。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2013/09/10/hello-again-ubuntu/">hello again ubuntu</a></h1>
   
 
@@ -542,64 +604,6 @@
 <h2 id="packages">packages</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">installed.packages() #list all installed packages&#10;install.packages() #install a package, if no package name given&#10;                   #you&#39;ll be prompted to select a mirror site and&#10;                   #then select a package in a list&#10;lib(package name) #load a custom package. If the package is installed by you&#10;                  #you need to load it tell R to load it first before using it</span><br></pre></td></tr></table></figure>
 <h2 id="file_manipulation">file manipulation</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getwd() #get current working directory&#10;setwd() #set current working directory. Note the dir path should be given&#10;        #as &#34;F:/R/project/somewhere&#34; instead of &#10;        #using back slash(used for escaping)&#10;dir.create(&#34;path/dir name&#34;) #create a dir. But you may find no function&#10;                            #such as dir.remove() or dir.delete() here :-)</span><br></pre></td></tr></table></figure>
 <p>At last, if you find some piece of code in this book not running in wondows version R, you should try it out in unix version before considering it a mistake.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-
-
-
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-
-  
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2013/05/10/a-laborious-solution-for-asms-missing-when-installing-wondows-xp-sp3/">a laborious solution for &#39;asms missing&#39; when installing wondows xp sp3</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2013-05-10T00:40:00.000Z">May 10 2013</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <p>朋友公司发福利， 每人一台acer D271上网本，打电话告诉我啥系统也木有，让我帮忙装各xp.拿到手里一看，确实挺薄。拿出u盘，开工。</p>
-<p>我用的YUMI制作多启动u盘。安装程序拷贝完文件，重启就遇到问题了，”需要cd上的asms”，上网搜，微软给的解释在<a href="http://support.microsoft.com/kb/311755" target="_blank" rel="external">这里</a>.原因是安装程序无法与CD-ROM通讯。给的解决方法试过之后，没效果。注册表编辑器打不开。短时间内又找不到一个新的Ghost盘，win pe也试过，还是不行。</p>
-<p>我的笨办法是，在另一台电脑上，把.iso文件解压缩，将‘I386’文件夹拷贝到u盘，然后。。。是的，提示缺哪个文件，就手工定位到u盘上述目录，起先我还怕会有很多文件要这样弄，装完之后发现也不是很多。</p>
-<p>安装过程熟悉了dos的切换目录命令：’cd’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd # display current working directory eq to &#39;chdir&#39;&#10;cd /? #show help info about &#39;cd&#39; also can be used with other commands&#10;cd /D D:\ # change dir to D drive</span><br></pre></td></tr></table></figure>
-<p>不得不说：</p>
-<ul>
-<li>acer也太不厚道了，你节省成本可以理解，但是至少也弄一个带图形桌面的linux发行版吧，弄一个只有命令行的linux来凑数对用户不负责。</li>
-<li>还在固守win xp的人们，今天离xp 停止支持还有332天，朋友这台本，acer 官网上没有提供xp的驱动了。</li>
-</ul>
 
       
     </div>
