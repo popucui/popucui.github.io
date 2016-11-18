@@ -81,6 +81,65 @@
     <header>
       
   
+    <h1 class="title"><a href="/2016/11/18/sqlite学习笔记/">sqlite学习笔记</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2016-11-18T07:18:30.000Z">Nov 18 2016</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <h4 id="sqlite3学习笔记">sqlite3学习笔记</h4><p>最近在学习sqlite，<a href="https://www.sqlite.org/docs.html" target="_blank" rel="external">sqlite官网</a>上面的文档无疑是最权威的，但对于新手来说上手有些困难，而是比较适合已经入门的初级使用者查阅。搜索之后发现下面这两个网站，还不错，我主要是跟着第一个学习的：</p>
+<ul>
+<li><a href="https://www.tutorialspoint.com/sqlite/index.htm" target="_blank" rel="external">sqlite教程</a></li>
+<li><a href="http://www.sqlitetutorial.net/tryit/" target="_blank" rel="external">在线版sqlite</a></li>
+</ul>
+<h5 id="简介">简介</h5><p>获取帮助 ：<code>.help</code><br>显示当前设置：<code>.show</code> 比如显示table时是否打印表头，各列之间以什么字符分隔，默认‘|’</p>
+<h6 id="数据库和列表打开与查看">数据库和列表打开与查看</h6><p>打开一个数据库：<code>.open &lt;database_name&gt;</code> 通过这种方法打开的数据库，默认的名字是<em>main</em>，如果需要同时打开多个数据库，可以为每个数据库取一个别名，<code>ATTACH DATABASE &#39;/home/manager/Documents/sqlite3/ath.db&#39; as &#39;ath&#39;;</code><br>注意，<em>main</em>和<em>temp</em>是保留名，在每个数据库连接中都有，用于作为primary database，存放临时列表和其他数据对象。</p>
+<p>显示当前已打开的全部数据库使用<code>.database</code>，同样地，如果需要查看当前session全部的table，可使用<code>.table(s)</code>。如果有多个数据库，注意看到拥有<em>alias name</em>的数据库中的列表，会以<strong>databasename.tablename</strong>的格式显示，但是在引用他们的名字时，使用全名（databasename.tablename）和列表名均可。</p>
+<p>查看一个表共有哪些列，<code>.schema Organisms</code> 或<code>PRAGMA table_info(Organisms);</code><br><strong>注意</strong>，sqlite中<em>commands</em>全部是小写字母组成，且以点号’.’开头，而<em>statements</em>是大写字母组成，以分号结尾’;’ 你可能已经看出来了，sqlite是区分大小写的，这点和MySQL不同（关于sqlite、MySQL和NoSQL三者的比较，<a href="https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems" target="_blank" rel="external">这里</a>的一篇文章很值得一看）。注释分为两种，<code>--</code>为行内注释，有限范围从字符往后到行尾，<code>/*</code>是C语言风格的注释，为块注释，位于<code>/*</code>和<code>*/</code>之间的内容会被sqlite引擎略过。</p>
+<h6 id="常用的操作：简单统计、查询">常用的操作：简单统计、查询</h6><p>类似于linux的<code>head</code>,有的时候需要从列表中选出几条记录看一下，可以这样<code>SELECT * FROM Organisms LIMIT 3;</code> 返回如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abbr        name&#10;----------  -----------------&#10;aaa         Acidovorax avenae&#10;aac         Alicyclobacillus&#10;aad         Alicyclobacillus</span><br></pre></td></tr></table></figure></p>
+<p>此外，还有其他常见操作<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(abbr) <span class="keyword">FROM</span> Organisms;</span> <span class="comment">--统计表中全部记录的数目</span></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(abbr) <span class="keyword">FROM</span> Organisms <span class="keyword">WHERE</span> abbr <span class="keyword">LIKE</span> <span class="string">'a__'</span>;</span> <span class="comment">--统计abbr以「a」开头，共3个字符长的记录数</span></span><br><span class="line">COUNT(abbr)</span><br><span class="line"><span class="comment">-----------</span></span><br><span class="line">232</span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(abbr) <span class="keyword">FROM</span> Organisms <span class="keyword">WHERE</span> abbr <span class="keyword">LIKE</span> <span class="string">'a%'</span>;</span> <span class="comment">--统计abbr以「a」开头的所有记录数</span></span><br><span class="line">COUNT(abbr)</span><br><span class="line"><span class="comment">-----------</span></span><br><span class="line">258</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2016/06/25/SGE新增用户配置/">SGE新增用户配置</a></h1>
   
 
@@ -558,76 +617,6 @@ my <span class="variable">$seqout</span> = <span class="keyword">new</span> Bio:
         <p><strong>Here is the issue</strong>: When I am trying to help someone to reinstall wondows7 on a TOSHIBA laptop, I can not get into the GUI interface, no matter with windows PE, USB disk created by universal USB  installer or windows 7 DVD download tool which is released by microsoft.</p>
 <p>After all these failed, I turn to ubuntu. I plug in my USB disk with ubuntu 12.04 inside, press F12 when booting, and I finally can have my desktop where I can browe all files on the hard drive. I had to erase the system partition when the attempt to check and repair the possible error in system partition failed me.</p>
 <p>Then all things go as expected, so you see, that is one reason to learn linux :-) -</p>
-<p>EOF</p>
-
-      
-    </div>
-    <footer>
-      
-        
-
-
-
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-
-  
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2013/09/23/differential-expression-for-rna-seq-data/">differential expression for RNA-Seq data</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2013-09-23T12:24:45.000Z">Sep 23 2013</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <p>从<a href="http://www.rna-seqblog.com/" target="_blank" rel="external">rna-seqblog</a>看到<a href="http://genomebiology.com/2013/14/9/R95/abstract" target="_blank" rel="external">这篇paper</a>,他们对流行的寻找差异基因的方法多了评测，压根没提到DEGSeq,我看到在bioconductor上面，DEGSeq的下载量只有DESeq、edgeR的一半，所以人家说‘流行的’就把DEGSeq排除在外了。</p>
-<p>不过这里要说的主角是另一本书，在翻看前述论文时看到的，打来不禁有相见恨晚的感叹，<a href="http://link.springer.com/book/10.1007/978-1-4614-0782-9/page/1" target="_blank" rel="external">原书</a>还没看完，这里把里面的一些要点记录下来。</p>
-<h3 id="microarray和sequencing">microarray和sequencing</h3><p>RNA-Seq相比microarray的优点已经被谈得够多了，这里作者同样讲了RNA-Seq的不足：</p>
-<ul>
-<li>RNA-Seq数据有GC偏好</li>
-<li>mapping的不确定对基因组不同区域的影响是不一样的</li>
-<li>RNA-Seq比较不同处理下的基因表达水平有偏好性。RNA-Seq的统计方法对高counts的检测能力要比低counts强，也就是说RNA-Seq会倾向于将长度更长的基因算作差异（DE）基因。</li>
-<li>RNA-Seq的高灵敏性带来的问题是，提取、富集RNA，RNA片段化和转化成cDNA的过程中都有更大的带来偏差的可能。如小RNA提取的方法强烈影响得到的序列集合。</li>
-<li>RNA-Seq数据更复杂，数据分析可能是瓶颈。</li>
-</ul>
-<h3 id="mapping">mapping</h3><p>主要有两类方法：基于hash-tables;基于Burrows Wheeler Transform</p>
-<ul>
-<li>hash-tables优点是可以找出用户指定的所有structural variants,确定是内存要求高。</li>
-<li>BWT相比前者使用内存更经济，缺点是，BWT确认错配的方法涉及把每个read的大量可能组合进行比对，二这需要相当大的计算量。很多实现方法对此的处理是，不穷尽所有错配比对，这也就意味着一些正确的比对丢失了。</li>
-</ul>
-<h3 id="RNA-Seq实验设计">RNA-Seq实验设计</h3><ul>
-<li>生物学重复重要性：如果我们比较一个癌症组织和一个正常组织，那么我们下的任何一个结论都不能推广到其癌组织群和正常组织群，因为分析过程没有考虑癌组织与癌组子和正常组织与正常组织间潜在的巨大差异。我们的结论仅适用于该研究的样本。</li>
-<li>上样的时候要考虑到不同lane，不同flow cell之间存在的系统差异</li>
-<li>reads长度的确定。更长的reads花费多，但map到trancriptome会更多，对外显子-外显子间连接区分能力更强，发现更多的遗传变异，但是DE的发现来自reads密度，而不是序列覆盖度。总之，是用更长的reads来换取‘mappability’，还是用更深的测序深度换取更多的reads密度呢？作者给的答案是，投资与‘mappability’所获通常比较小。</li>
-<li>paried-end reads: PE-reads可以有更多的reads map到转录组或基因组上，有助于发现结构变异，然而PE-reads带来的更多花费并不能增加检测DE的强度。</li>
-</ul>
 <p>EOF</p>
 
       
