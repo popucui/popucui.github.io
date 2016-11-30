@@ -81,6 +81,56 @@
     <header>
       
   
+    <h1 class="title"><a href="/2013/05/29/windowsxia-zen-yang-an-zhuang-rbao/">windows下怎样安装R包</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-05-28T23:00:00.000Z">May 29 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>不管是看书还是讲R的ppt提到安装R包，都很简单：<code>install.packages(&quot;package name&quot;)</code>。可是在windows下试过之后，就会知道，安装目录下的library不可写，R程序会提示你使用一个自定义的library,会让你选‘是’还是‘否’，于是选是，下载完包之后，用<code>lib(&quot;package name&quot;)</code>加载一下，发现找不到前面安装的包，反复试过都是这样。</p>
+<p>搜索一下，发现我们需要人工建一个library,然后告诉R这个library的位置。<a href="http://www.divms.uiowa.edu/help/windows/RPackage.html" target="_blank" rel="external">这里</a>有操作说明。其实就是配置一个叫’R_LIBS’的环境变量。然后在安装，<code>lib(&quot;package name&quot;)</code>加载，都没问题了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2013/05/16/ted-talks-10-top-time-saving-tech-tips/">TED talks:10 top time-saving tech tips</a></h1>
   
 
