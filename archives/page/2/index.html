@@ -81,6 +81,68 @@
     <header>
       
   
+    <h1 class="title"><a href="/2013/10/11/linux常用命令/">linux常用命令</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-10-11T15:13:13.000Z">Oct 11 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="git">git</h3><p>在github上参与别人的项目或则多人共同开发一个项目的话，fork一个项目的仓库过来，自己做完提交pull request之后，就等着作者review过之后进行merge了。但是之后作者再进行新的改动，我的分支上还是原样，那么怎样让把我的分支上的与最新的仓库一直呢?</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#assume you originally cloned from your forked repo,that remote will be called &#34;origin&#34;, &#10;#then you need to add firstguy repo as another remote&#10;git remote add firstguy git://github.com/firstguy/repo.git&#10;#After that is all set up, you should indeed be able to&#10;git pull firstguy mastergit push origin</span><br></pre></td></tr></table></figure>
+<h3 id="ubuntu_apt">ubuntu apt</h3><p>apt search</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># package search&#10;apt-cache search &#10;apt-cache show #------(package &#33719;&#21462;&#21253;&#30340;&#30456;&#20851;&#20449;&#24687;&#65292;&#22914;&#35828;&#26126;&#12289;&#22823;&#23567;&#12289;&#29256;&#26412;&#31561;)</span><br></pre></td></tr></table></figure>
+<p>apt install&amp;remove</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#package install&#10;sudo apt-get install &#10;sudo apt-get install # -----(package - - reinstall &#37325;&#26032;&#23433;&#35013;&#21253;)&#10;sudo apt-get -f install # -----(&#24378;&#21046;&#23433;&#35013;?#&#34;-f = --fix-missing&#34;&#24403;&#26159;&#20462;&#22797;&#23433;&#35013;&#21543;...)&#10;sudo apt-get remove #-----(package &#21024;&#38500;&#21253;)&#10;sudo apt-get remove - - purge # ------(package &#21024;&#38500;&#21253;&#65292;&#21253;&#25324;&#21024;&#38500;&#37197;&#32622;&#25991;&#20214;&#31561;)&#10;sudo apt-get autoremove --purge # ----(package &#21024;&#38500;&#21253;&#21450;&#20854;&#20381;&#36182;&#30340;&#36719;&#20214;&#21253;+&#37197;&#32622;&#25991;&#20214;&#31561;</span><br></pre></td></tr></table></figure>
+<p>apt update and more</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#update source&#10;sudo apt-get update &#10;sudo apt-get upgrade #------&#26356;&#26032;&#24050;&#23433;&#35013;&#30340;&#21253;&#10;sudo apt-get dist-upgrade # ---------&#21319;&#32423;&#31995;&#32479;&#10;sudo apt-get dselect-upgrade #------&#20351;&#29992; dselect &#21319;&#32423;&#10;apt-cache depends #-------(package &#20102;&#35299;&#20351;&#29992;&#20381;&#36182;)&#10;apt-cache rdepends # ------(package &#20102;&#35299;&#26576;&#20010;&#20855;&#20307;&#30340;&#20381;&#36182;?#&#24403;&#26159;&#26597;&#30475;&#35813;&#21253;&#34987;&#21738;&#20123;&#21253;&#20381;&#36182;&#21543;...)&#10;sudo apt-get build-dep # ------(package &#23433;&#35013;&#30456;&#20851;&#30340;&#32534;&#35793;&#29615;&#22659;)&#10;apt-get source #------(package &#19979;&#36733;&#35813;&#21253;&#30340;&#28304;&#20195;&#30721;)&#10;sudo apt-get clean &#38;&#38; sudo apt-get autoclean # --------&#28165;&#29702;&#19979;&#36733;&#25991;&#20214;&#30340;&#23384;&#26723; &#38;&#38; &#21482;&#28165;&#29702;&#36807;&#26102;&#30340;&#21253;&#10;sudo apt-get check #-------&#26816;&#26597;&#26159;&#21542;&#26377;&#25439;&#22351;&#30340;&#20381;&#36182;</span><br></pre></td></tr></table></figure>
+<p><strong>nohup</strong>: short for “no hang up”</p>
+<ul>
+<li>usage: nohup command &amp;</li>
+<li>default output: nohup.out which contains std out and std error, I refquently use this: <code>nohup sslocal &gt; log &amp;</code></li>
+</ul>
+<p>EOF</p>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2013/10/11/no-desktop-when-installing-windows7-solved/">no desktop when installing windows7 solved</a></h1>
   
 
@@ -566,62 +628,6 @@
 <h3 id="closing_ad:">closing ad:</h3><p>This is it, this is what matters—-the experience of our product. How it make someone feel? Will it make life better? Does it deserve to exist? We spend a lot of time on the feel of great things, until every idea we touch enhances each life it touches. You may rarely look at it, but you always feel it. This is our signature, and it means everything.</p>
 <p>这个广告给人感觉 Tim Cook掌舵之下的苹果不再那么激进，少了”think different”那样的凌厉，锐不可当的气势，‘You can quote them, disagree with them, glorify or vilify them. About the only thing you can’t do is ignore them’取而代之的是一种胜券在握的淡定从容。的确，成长为市值最高的科技的苹果也需要这种转变，过去是适应规则，而今是指定推广标准了。</p>
 <p><a href="http://en.wikipedia.org/wiki/Think_Different" target="_blank" rel="external">think different ad</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-
-
-
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-
-  
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2013/05/29/more-vim/">more vim</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2013-05-28T23:21:00.000Z">May 29 2013</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <p>如果觉得昨天的vim学完后，不过瘾，这里还有几个好玩儿的命令。</p>
-<ul>
-<li><code>:!ls</code> 不退出当前编辑页面情况下执行<code>ls</code>命令。这<code>ls</code>可换成其他任意一个shell命令，这个在调试程序的时候经常用到，比如我改了一个地方，接着想看看执行情况，就可以这样。</li>
-<li>导航 <code>h</code> <code>l</code> <code>j</code> <code>k</code> 分别是左移动，右移动，下移动一行，上移动一行；<code>n + shift g</code>移动到第n行 <code>shift g</code>不加行号，默认移动到末行; <code>ctrl g</code>显示当前正在编辑的文件名，光标所在行号; <code>gg</code>移动到首行 <code>G</code>移动到末行。</li>
-<li>编辑 <code>dd</code>删除当前行 <code>dd n</code>往下删除n行  <code>yy n</code>往下复制n行 <code>p</code>讲粘帖板内容插入到当前行下面，<code>o</code>当前行下面插入一个空行并进入编辑模式 <code>O</code>当前行的<strong>上面 </strong>插入一行并进入编辑模式。</li>
-<li><code>:split txt2</code> 分出一个窗口并打开文件’txt2’，<code>ctrl w</code>可以在两个窗口间跳转。</li>
-</ul>
-<p>此外还有，单个字符替换，单个词的删除，以及从当前位置删除到行首或行尾等也经常用到。比较新的linux发行版会附带一个vim教程’vimtutor’,让你通过操作学习使用vim.</p>
 
       
     </div>
