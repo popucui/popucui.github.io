@@ -77,6 +77,64 @@
     <header>
       
   
+    <h1 class="title"><a href="/2013/10/27/一道信息分析面试题的分析/">一道信息分析面试题的分析</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-10-27T06:47:39.000Z">Oct 27 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>前几天接到一个公司的电话面试，当天晚上HR发来一道题，限三日内完成并发回。我看了下，正好用到的知识自己都熟悉，花了几个钟头就给发回去了 :-)</p>
+<p>原题大意这样 写一个程序，分别计算一个目录里所有fasta格式的核酸序列的GC含量，然后按照GC含量由低到高显示，并把结果写入一个文件<br>显示序列信息的格式为：<br>文件名  序列名  GC含量<br>hem.fasta hem1  24.3%</p>
+<p>这道题挺简单的，细看之下主要有这么几点：</p>
+<ul>
+<li>计算序列GC含量，可以用一个函数实现</li>
+<li>列出目录下的所有文件，然后判断他们是不是fasta格式文件。前者用os模块的<code>listdir</code>就可，后者就是要看文件的首行是不是形如“&gt;at1g23490”开头，即是否“&gt;”开头，后面紧跟字符，正则就行了。</li>
+<li>结果排序。这个应该是这道简单笔试题最难的部分了。正好之前从一个<a href="http://wangwei007.blog.51cto.com/68019/1131610/" target="_blank" rel="external">博客</a>读到解决排序的办法，就依样做了。把每条序列的结果存到一个列表里，然后对列表排序。</li>
+</ul>
+<p>这是我的代码 <a href="https://github.com/popucui/PyManipulateFiles/blob/master/bioinfoInterviw.py" target="_blank" rel="external">信息分析面试</a></p>
+<p> EOF</p>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2013/10/11/linux常用命令/">linux常用命令</a></h1>
   
 
@@ -572,58 +630,6 @@
 <li>the previous two functions applies to all platforms,now comes another tip which works on unix-like machine: pydoc -k keyword.</li>
 </ul>
 <p>And as always, you can google it, if those tricks don’t satisfy you.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-
-
-
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-
-  
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2013/06/13/apple-new-ad/">apple new ad</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2013-06-13T15:31:00.000Z">Jun 13 2013</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <h2 id="apple_wwdc_2013_keynote">apple wwdc 2013 keynote</h2><h3 id="beginning_declaration:">beginning declaration:</h3><p>if everyone is busy making something, how can anyone perfect anything? We start to confuse convenience with joy,abundance with choice, designing something requires focus. The first thing we ask is: what do we want people to feel? <strong>Delight/surprise/love/connection</strong>, then we begin to craft around our intention, it takes time, there are a thousand nos for every yes. We simplify, we perfect, we start over, until every idea we touch enhances each life it touches, only then do we sign our work.</p>
-<h3 id="closing_ad:">closing ad:</h3><p>This is it, this is what matters—-the experience of our product. How it make someone feel? Will it make life better? Does it deserve to exist? We spend a lot of time on the feel of great things, until every idea we touch enhances each life it touches. You may rarely look at it, but you always feel it. This is our signature, and it means everything.</p>
-<p>这个广告给人感觉 Tim Cook掌舵之下的苹果不再那么激进，少了”think different”那样的凌厉，锐不可当的气势，‘You can quote them, disagree with them, glorify or vilify them. About the only thing you can’t do is ignore them’取而代之的是一种胜券在握的淡定从容。的确，成长为市值最高的科技的苹果也需要这种转变，过去是适应规则，而今是指定推广标准了。</p>
-<p><a href="http://en.wikipedia.org/wiki/Think_Different" target="_blank" rel="external">think different ad</a></p>
 
       
     </div>

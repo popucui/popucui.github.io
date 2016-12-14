@@ -77,6 +77,69 @@
     <header>
       
   
+    <h1 class="title"><a href="/2016/12/14/google深度学习用于糖尿病视障碍检测/">google深度学习用于糖尿病视障碍检测</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2016-12-14T06:53:59.000Z">Dec 14 2016</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>就在11月底，<a href="https://research.googleblog.com/2016/11/deep-learning-for-detection-of-diabetic.html" target="_blank" rel="external">google research博客</a>，发出一篇文章，介绍其使用深度学习检测糖尿病诱发的视网膜病变的成果，该研究使用由9,963张视网膜照片组成的验证数据进行测试，结果机器给出的结果，其F-score值（综合反映敏感性和准确性的度量指数，最大为1，越大越好）为0.95，高于8为医学专家的中位数值0.91。</p>
+<p>简单搜索了下，微信公众号已经有一篇文章介绍这个成果的，但一看就是从某个英文网站翻译过来，而且整体的逻辑也不清晰，所以我觉得有必要写一篇新文章，这里的文字并非是google research博客的原文翻译，而是在保证准确转述的基础上加了我自己的理解。</p>
+<p>目前全球有4.15亿糖尿病人，而Diabetic retinopathy（简称DR，查了维基百科的解释，这里译为『糖尿病视障碍』或『糖尿病眼盲』）是增长最快的导致失明的发病诱因。这种病发现早的话，是可以治愈的，而发现晚的话，就无可奈何了。</p>
+<p>目前对DR病人的诊断，是由医学专家对病人的眼睛黑区照片检查，依据损伤的存在和面积判断疾病的发生和严重度，进行这种人工检查需要专门的训练，而很多这类疾病高发地区恰恰稀缺这样的医学专家。</p>
+<p>google和印度、美国的医生合作开发了这个算法：</p>
+<ul>
+<li>首先解决的是训练数据，在医生的帮助下收集整理了128,000张图片，这些图片都经过由54名医学专家组中的3-7人手工检查并做了标记</li>
+<li>接着，使用这批数据进行深度神经网路算法的训练</li>
+<li>然后使用~12,000张的两批新数据集进行算法效力的评估，而评估的金标准，大部分是来自一个7-8人的专家团队的意见，这个团队是由前述54人的专家委员会内部推举产生</li>
+</ul>
+<p>结果就是下面这张图，深度学习算法的表现和专家判读结果相当，甚至优于专家组的平均值。<br>最后googler也提醒我们，不要高兴太早，原因是：</p>
+<ul>
+<li>尽管以常规的衡量方式看，深度学习算法的表现已经很好，他们认为还要收集更多更准确的参考结果，用于提升算法表现</li>
+<li>解读2D的病人眼部图片是诊断糖尿病眼疾的多个步骤中的一个，有些情况下还需结合3D成像技术，OCT来细致地检查病人视网膜的不同层。好消息是，利用机器学习解决3D成像结果的识别，已经由google的另一个部门<a href="https://deepmind.com/applied/deepmind-health/research/" target="_blank" rel="external">DeepMind</a>在做了，相信结合两个方法可以帮医生诊断更多眼部疾病</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2016/12/11/千万富翁的财富之旅/">千万富翁的财富之旅</a></h1>
   
 
