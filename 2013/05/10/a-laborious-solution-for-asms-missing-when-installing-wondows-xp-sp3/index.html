@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>a laborious solution for &#39;asms missing&#39; when installing wondows xp sp3 | popucui</title>
@@ -11,11 +11,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="a laborious solution for &#39;asms missing&#39; when installing wondows xp sp3"/>
-  <meta property="og:site_name" content="popucui"/>
+  <meta property="og:title" content="a laborious solution for &#39;asms missing&#39; when installing wondows xp sp3">
+  <meta property="og:site_name" content="popucui">
 
   
-    <meta property="og:image" content="undefined"/>
+    <meta property="og:image" content="undefined">
   
 
   <link href="/favicon.png" rel="icon">
@@ -25,7 +25,7 @@
   <script src="http://cdn.staticfile.org/jquery-i18n/1.1.1/jquery.i18n.min.js"></script>
   
 </head>
-
+</html>
 <body>
   <header id="header" class="inner"><div class="alignleft">
   <h1><a href="/">popucui</a></h1>
@@ -84,10 +84,10 @@
     <div class="entry">
       
         <p>朋友公司发福利， 每人一台acer D271上网本，打电话告诉我啥系统也木有，让我帮忙装各xp.拿到手里一看，确实挺薄。拿出u盘，开工。</p>
-<p>我用的YUMI制作多启动u盘。安装程序拷贝完文件，重启就遇到问题了，”需要cd上的asms”，上网搜，微软给的解释在<a href="http://support.microsoft.com/kb/311755" target="_blank" rel="external">这里</a>.原因是安装程序无法与CD-ROM通讯。给的解决方法试过之后，没效果。注册表编辑器打不开。短时间内又找不到一个新的Ghost盘，win pe也试过，还是不行。</p>
+<p>我用的YUMI制作多启动u盘。安装程序拷贝完文件，重启就遇到问题了，”需要cd上的asms”，上网搜，微软给的解释在<a href="http://support.microsoft.com/kb/311755" target="_blank" rel="noopener">这里</a>.原因是安装程序无法与CD-ROM通讯。给的解决方法试过之后，没效果。注册表编辑器打不开。短时间内又找不到一个新的Ghost盘，win pe也试过，还是不行。</p>
 <p>我的笨办法是，在另一台电脑上，把.iso文件解压缩，将‘I386’文件夹拷贝到u盘，然后。。。是的，提示缺哪个文件，就手工定位到u盘上述目录，起先我还怕会有很多文件要这样弄，装完之后发现也不是很多。</p>
 <p>安装过程熟悉了dos的切换目录命令：’cd’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd # display current working directory eq to &#39;chdir&#39;&#10;cd /? #show help info about &#39;cd&#39; also can be used with other commands&#10;cd /D D:\ # change dir to D drive</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">cd # display current working directory eq to &apos;chdir&apos;</span><br><span class="line">cd /? #show help info about &apos;cd&apos; also can be used with other commands</span><br><span class="line">cd /D D:\ # change dir to D drive</span><br></pre></td></tr></table></figure>
 <p>不得不说：</p>
 <ul>
 <li>acer也太不厚道了，你节省成本可以理解，但是至少也弄一个带图形桌面的linux发行版吧，弄一个只有命令行的linux来凑数对用户不负责。</li>

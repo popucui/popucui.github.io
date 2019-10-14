@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>database,ClinVar | popucui</title>
@@ -12,10 +12,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="popucui"/>
+  <meta property="og:site_name" content="popucui">
 
   
-    <meta property="og:image" content="undefined"/>
+    <meta property="og:image" content="undefined">
   
 
   <link href="/favicon.png" rel="icon">
@@ -25,7 +25,7 @@
   <script src="http://cdn.staticfile.org/jquery-i18n/1.1.1/jquery.i18n.min.js"></script>
   
 </head>
-
+</html>
 <body>
   <header id="header" class="inner"><div class="alignleft">
   <h1><a href="/">popucui</a></h1>
@@ -88,7 +88,7 @@
     </header>
     <div class="entry">
       
-        <p><a href="https://www.ncbi.nlm.nih.gov/clinvar/intro/" target="_blank" rel="external">ClinVar</a>是NCBI开发的一个存储人类变异和表型关系的数据库，一般会有证据支持信息（来自临床诊断还是仅仅源自文献报道）。</p>
+        <p><a href="https://www.ncbi.nlm.nih.gov/clinvar/intro/" target="_blank" rel="noopener">ClinVar</a>是NCBI开发的一个存储人类变异和表型关系的数据库，一般会有证据支持信息（来自临床诊断还是仅仅源自文献报道）。</p>
 <h2 id="数据库建立">数据库建立</h2><p>2013年发布第一个版本，初始数据由OMIM，dbSNP，GeneViewer等数据库，以及一部分临检实验室提交的数据。</p>
 <h2 id="数据库结构">数据库结构</h2><p>同一个submitter不同批次提交的数据，都会被记录（前缀是SCV，不同批次间做了区分）。不同submitter提交的针对同一个位点的变异，聚合为一个RCV记录，如果他们的结论有冲突，会有一个专家组进行review后给出结论，同一个位点不一致的结论每个月会发布一个release。</p>
 <p>数据收集方法</p>
@@ -102,7 +102,7 @@
 <ul>
 <li>web 可使用基因名，rs number，疾病名，HGVS表达式（人类基因组变异学会定义的用于精确描述变异信息的格式）</li>
 <li>ftp XML格式存储的是全部ClinVar的信息，VCF存储的是SNP信息，大于50nt的SNV不包括在内</li>
-<li>api  支持esearch efetch esummary elink共4种方法，这里是<a href="https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/#api" target="_blank" rel="external">文档</a></li>
+<li>api  支持esearch efetch esummary elink共4种方法，这里是<a href="https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/#api" target="_blank" rel="noopener">文档</a></li>
 </ul>
 
       

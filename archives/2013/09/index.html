@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>archive_b | popucui</title>
@@ -12,10 +12,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="popucui"/>
+  <meta property="og:site_name" content="popucui">
 
   
-    <meta property="og:image" content="undefined"/>
+    <meta property="og:image" content="undefined">
   
 
   <link href="/favicon.png" rel="icon">
@@ -25,7 +25,7 @@
   <script src="http://cdn.staticfile.org/jquery-i18n/1.1.1/jquery.i18n.min.js"></script>
   
 </head>
-
+</html>
 <body>
   <header id="header" class="inner"><div class="alignleft">
   <h1><a href="/">popucui</a></h1>
@@ -88,8 +88,8 @@
     </header>
     <div class="entry">
       
-        <p>从<a href="http://www.rna-seqblog.com/" target="_blank" rel="external">rna-seqblog</a>看到<a href="http://genomebiology.com/2013/14/9/R95/abstract" target="_blank" rel="external">这篇paper</a>,他们对流行的寻找差异基因的方法多了评测，压根没提到DEGSeq,我看到在bioconductor上面，DEGSeq的下载量只有DESeq、edgeR的一半，所以人家说‘流行的’就把DEGSeq排除在外了。</p>
-<p>不过这里要说的主角是另一本书，在翻看前述论文时看到的，打来不禁有相见恨晚的感叹，<a href="http://link.springer.com/book/10.1007/978-1-4614-0782-9/page/1" target="_blank" rel="external">原书</a>还没看完，这里把里面的一些要点记录下来。</p>
+        <p>从<a href="http://www.rna-seqblog.com/" target="_blank" rel="noopener">rna-seqblog</a>看到<a href="http://genomebiology.com/2013/14/9/R95/abstract" target="_blank" rel="noopener">这篇paper</a>,他们对流行的寻找差异基因的方法多了评测，压根没提到DEGSeq,我看到在bioconductor上面，DEGSeq的下载量只有DESeq、edgeR的一半，所以人家说‘流行的’就把DEGSeq排除在外了。</p>
+<p>不过这里要说的主角是另一本书，在翻看前述论文时看到的，打来不禁有相见恨晚的感叹，<a href="http://link.springer.com/book/10.1007/978-1-4614-0782-9/page/1" target="_blank" rel="noopener">原书</a>还没看完，这里把里面的一些要点记录下来。</p>
 <h3 id="microarray和sequencing">microarray和sequencing</h3><p>RNA-Seq相比microarray的优点已经被谈得够多了，这里作者同样讲了RNA-Seq的不足：</p>
 <ul>
 <li>RNA-Seq数据有GC偏好</li>
@@ -211,7 +211,7 @@
     </header>
     <div class="entry">
       
-        <p>用tophat做完mapping之后，接下来就是count reads，<a href="http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html" target="_blank" rel="external">HTSeq</a>的文档很详细，还有一个use case，除了这个case，其他的全部跟着走了一遍。接下来使用htseq-qa和htseq-count的时候，遇到了问题，记录在这里：</p>
+        <p>用tophat做完mapping之后，接下来就是count reads，<a href="http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html" target="_blank" rel="noopener">HTSeq</a>的文档很详细，还有一个use case，除了这个case，其他的全部跟着走了一遍。接下来使用htseq-qa和htseq-count的时候，遇到了问题，记录在这里：</p>
 <h3 id="htseq-qa">htseq-qa</h3><p>安装了HTSeq后，htseq-qa的使用也很简单：</p>
 <ul>
 <li><code>htseq-qa [options] read_file</code> #assumes htseq is in your PATH</li>
@@ -275,7 +275,7 @@
       
         <p>我接触的第一个linux发行版就是基于ubuntu的Macbuntu，那时候还是10.04的时代，后来自己不小心弄坏了MBR，连Windows也进不去，捉了不少难，好在从此学会PE重建主引导的方法。之后进转投Fedora，直到现在又用回ubuntu。</p>
 <p>最主要的原因就是受够了Fedora那难看的字体，而从一开始ubuntu给我的印象就是漂亮，比windows漂亮，至于Mac吗，还没用过暂不置评。放弃Fedora还有一个原因是yum包管理也开始觉得不爽，每次我要search install软件，都要先更新下，前天安装HTSeq又遇到更新源频频出问题，慢的叫人抓狂。</p>
-<p>转到ubuntu之后，顺便也把博客从<a href="http://octopress.org/" target="_blank" rel="external">octopress</a>迁移到<a href="http://zespia.tw/hexo/" target="_blank" rel="external">hexo</a>。octopress是基于ruby的，而hexo基于node，速度比前者明显快多了，随着博客文章越来越多，我越来越在意这种差别。最后，把用到过得几个命令记下来：</p>
+<p>转到ubuntu之后，顺便也把博客从<a href="http://octopress.org/" target="_blank" rel="noopener">octopress</a>迁移到<a href="http://zespia.tw/hexo/" target="_blank" rel="noopener">hexo</a>。octopress是基于ruby的，而hexo基于node，速度比前者明显快多了，随着博客文章越来越多，我越来越在意这种差别。最后，把用到过得几个命令记下来：</p>
 <ul>
 <li><code>source somefile</code> reload the file,but only affect current session, will lose when restart terminal</li>
 <li><code>dpkg -i xxx.deb</code> install xxx soft which is in ubuntu deb format</li>
@@ -330,7 +330,7 @@
     </header>
     <div class="entry">
       
-        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a href="http://kobas.cbi.pku.edu.cn/home.do">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
+        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a href="http://kobas.cbi.pku.edu.cn/home.do" target="_blank" rel="noopener">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
 <h3 id="ID_prepare">ID prepare</h3><p>我的基因号现在形如：</p>
 <ul>
 <li>AT1G01170</li>
@@ -392,7 +392,7 @@
     <div class="entry">
       
         <h3 id="install_tophat">install tophat</h3><p>I got our RNA-seq all data a couple of days ago, after playing with python keggrest package grabing KEGG anotaion data some while, I decided to try installing tophat on my PC and run mapping with real project data.</p>
-<p>Generally just follow the instructions on tophat’s <a href="http://tophat.cbcb.umd.edu/tutorial.shtml" target="_blank" rel="external">offical page</a> is enough. Some points are listed below:</p>
+<p>Generally just follow the instructions on tophat’s <a href="http://tophat.cbcb.umd.edu/tutorial.shtml" target="_blank" rel="noopener">offical page</a> is enough. Some points are listed below:</p>
 <ul>
 <li><p>bowtie. Download and unpack the latest bowtie2, copy it to somewhere you wish, and most importanly add ‘bowtie2’ ‘bowtie2-build’ and ‘bowtie2-inspect’ to your $PATH like this: <code>export PATH=$PATH:/home/popcui/bio/bowtie*</code> A better way to do this is <code>echo</code> previous command to ‘~/.bashrc’</p>
 </li>

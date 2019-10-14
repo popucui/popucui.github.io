@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Page 2 | popucui</title>
@@ -12,10 +12,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="popucui"/>
+  <meta property="og:site_name" content="popucui">
 
   
-    <meta property="og:image" content="undefined"/>
+    <meta property="og:image" content="undefined">
   
 
   <link href="/favicon.png" rel="icon">
@@ -25,7 +25,7 @@
   <script src="http://cdn.staticfile.org/jquery-i18n/1.1.1/jquery.i18n.min.js"></script>
   
 </head>
-
+</html>
 <body>
   <header id="header" class="inner"><div class="alignleft">
   <h1><a href="/">popucui</a></h1>
@@ -73,6 +73,68 @@
     <header>
       
   
+    <h1 class="title"><a href="/2013/11/24/retrieving-and-sending-infomation-over-the-web/">retrieving and sending infomation over the web</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2013-11-24T08:04:53.000Z">Nov 24 2013</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>I found <a href="http://pythonforbiologists.com/index.php/applied-python-for-biologists/applied-python-2/" target="_blank" rel="noopener">this</a> when hanging around online. To be honest, I am dying to learn web crawling long time ago, can not wait to play with this.</p>
+<p>modules involved:</p>
+<ul>
+<li>urllib2</li>
+<li>re</li>
+<li><a href="http://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="noopener">BeautifulSoup</a> Need to install manually</li>
+</ul>
+<p>This post is very easy to follow with basic familarity of Python, the difficulty of web crawling is lots of, if not all, websites follow HTML specification exactly, there are often errors here and there if you try to parse useful bits of infomation out there, and here comes BeautifulSoup which handle most of these for us.</p>
+<p>The second section discuss sending email with Python. One thing need to keep in mind is check your internet connection first if your code refuse to work :-)- I have complete the spec of No.5, and below are some commands I find useful:</p>
+<ul>
+<li><code>execfile(&#39;script.py&#39;)</code> #load script into console</li>
+<li><code>python -i script.py</code> #execute script then come to Python console, ‘i’ short for ‘interactive’</li>
+<li>sometimes you need to insert a time stamp into you file, and <code>time.ctime()</code> is probably the simplest solution<br>source code is <a href="https://github.com/popucui/RetrievandMail/blob/master/RetrievandMail.py" target="_blank" rel="noopener">here</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2013/10/27/一道信息分析面试题的分析/">一道信息分析面试题的分析</a></h1>
   
 
@@ -90,9 +152,9 @@
 <ul>
 <li>计算序列GC含量，可以用一个函数实现</li>
 <li>列出目录下的所有文件，然后判断他们是不是fasta格式文件。前者用os模块的<code>listdir</code>就可，后者就是要看文件的首行是不是形如“&gt;at1g23490”开头，即是否“&gt;”开头，后面紧跟字符，正则就行了。</li>
-<li>结果排序。这个应该是这道简单笔试题最难的部分了。正好之前从一个<a href="http://wangwei007.blog.51cto.com/68019/1131610/" target="_blank" rel="external">博客</a>读到解决排序的办法，就依样做了。把每条序列的结果存到一个列表里，然后对列表排序。</li>
+<li>结果排序。这个应该是这道简单笔试题最难的部分了。正好之前从一个<a href="http://wangwei007.blog.51cto.com/68019/1131610/" target="_blank" rel="noopener">博客</a>读到解决排序的办法，就依样做了。把每条序列的结果存到一个列表里，然后对列表排序。</li>
 </ul>
-<p>这是我的代码 <a href="https://github.com/popucui/PyManipulateFiles/blob/master/bioinfoInterviw.py" target="_blank" rel="external">信息分析面试</a></p>
+<p>这是我的代码 <a href="https://github.com/popucui/PyManipulateFiles/blob/master/bioinfoInterviw.py" target="_blank" rel="noopener">信息分析面试</a></p>
 <p> EOF</p>
 
       
@@ -143,13 +205,13 @@
     <div class="entry">
       
         <h3 id="git">git</h3><p>在github上参与别人的项目或则多人共同开发一个项目的话，fork一个项目的仓库过来，自己做完提交pull request之后，就等着作者review过之后进行merge了。但是之后作者再进行新的改动，我的分支上还是原样，那么怎样让把我的分支上的与最新的仓库一直呢?</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#assume you originally cloned from your forked repo,that remote will be called &#34;origin&#34;, &#10;#then you need to add firstguy repo as another remote&#10;git remote add firstguy git://github.com/firstguy/repo.git&#10;#After that is all set up, you should indeed be able to&#10;git pull firstguy mastergit push origin</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>assume you originally cloned from your forked repo,that remote will be called "origin", </span><br><span class="line"><span class="meta">#</span>then you need to add firstguy repo as another remote</span><br><span class="line">git remote add firstguy git://github.com/firstguy/repo.git</span><br><span class="line"><span class="meta">#</span>After that is all set up, you should indeed be able to</span><br><span class="line">git pull firstguy mastergit push origin</span><br></pre></td></tr></table></figure>
 <h3 id="ubuntu_apt">ubuntu apt</h3><p>apt search</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># package search&#10;apt-cache search &#10;apt-cache show #------(package &#33719;&#21462;&#21253;&#30340;&#30456;&#20851;&#20449;&#24687;&#65292;&#22914;&#35828;&#26126;&#12289;&#22823;&#23567;&#12289;&#29256;&#26412;&#31561;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> package search</span><br><span class="line">apt-cache search </span><br><span class="line">apt-cache show #------(package 获取包的相关信息，如说明、大小、版本等)</span><br></pre></td></tr></table></figure>
 <p>apt install&amp;remove</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#package install&#10;sudo apt-get install &#10;sudo apt-get install # -----(package - - reinstall &#37325;&#26032;&#23433;&#35013;&#21253;)&#10;sudo apt-get -f install # -----(&#24378;&#21046;&#23433;&#35013;?#&#34;-f = --fix-missing&#34;&#24403;&#26159;&#20462;&#22797;&#23433;&#35013;&#21543;...)&#10;sudo apt-get remove #-----(package &#21024;&#38500;&#21253;)&#10;sudo apt-get remove - - purge # ------(package &#21024;&#38500;&#21253;&#65292;&#21253;&#25324;&#21024;&#38500;&#37197;&#32622;&#25991;&#20214;&#31561;)&#10;sudo apt-get autoremove --purge # ----(package &#21024;&#38500;&#21253;&#21450;&#20854;&#20381;&#36182;&#30340;&#36719;&#20214;&#21253;+&#37197;&#32622;&#25991;&#20214;&#31561;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>package install</span><br><span class="line">sudo apt-get install </span><br><span class="line">sudo apt-get install # -----(package - - reinstall 重新安装包)</span><br><span class="line">sudo apt-get -f install # -----(强制安装?#"-f = --fix-missing"当是修复安装吧...)</span><br><span class="line">sudo apt-get remove #-----(package 删除包)</span><br><span class="line">sudo apt-get remove - - purge # ------(package 删除包，包括删除配置文件等)</span><br><span class="line">sudo apt-get autoremove --purge # ----(package 删除包及其依赖的软件包+配置文件等</span><br></pre></td></tr></table></figure>
 <p>apt update and more</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#update source&#10;sudo apt-get update &#10;sudo apt-get upgrade #------&#26356;&#26032;&#24050;&#23433;&#35013;&#30340;&#21253;&#10;sudo apt-get dist-upgrade # ---------&#21319;&#32423;&#31995;&#32479;&#10;sudo apt-get dselect-upgrade #------&#20351;&#29992; dselect &#21319;&#32423;&#10;apt-cache depends #-------(package &#20102;&#35299;&#20351;&#29992;&#20381;&#36182;)&#10;apt-cache rdepends # ------(package &#20102;&#35299;&#26576;&#20010;&#20855;&#20307;&#30340;&#20381;&#36182;?#&#24403;&#26159;&#26597;&#30475;&#35813;&#21253;&#34987;&#21738;&#20123;&#21253;&#20381;&#36182;&#21543;...)&#10;sudo apt-get build-dep # ------(package &#23433;&#35013;&#30456;&#20851;&#30340;&#32534;&#35793;&#29615;&#22659;)&#10;apt-get source #------(package &#19979;&#36733;&#35813;&#21253;&#30340;&#28304;&#20195;&#30721;)&#10;sudo apt-get clean &#38;&#38; sudo apt-get autoclean # --------&#28165;&#29702;&#19979;&#36733;&#25991;&#20214;&#30340;&#23384;&#26723; &#38;&#38; &#21482;&#28165;&#29702;&#36807;&#26102;&#30340;&#21253;&#10;sudo apt-get check #-------&#26816;&#26597;&#26159;&#21542;&#26377;&#25439;&#22351;&#30340;&#20381;&#36182;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>update source</span><br><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get upgrade #------更新已安装的包</span><br><span class="line">sudo apt-get dist-upgrade # ---------升级系统</span><br><span class="line">sudo apt-get dselect-upgrade #------使用 dselect 升级</span><br><span class="line">apt-cache depends #-------(package 了解使用依赖)</span><br><span class="line">apt-cache rdepends # ------(package 了解某个具体的依赖?#当是查看该包被哪些包依赖吧...)</span><br><span class="line">sudo apt-get build-dep # ------(package 安装相关的编译环境)</span><br><span class="line">apt-get source #------(package 下载该包的源代码)</span><br><span class="line">sudo apt-get clean &amp;&amp; sudo apt-get autoclean # --------清理下载文件的存档 &amp;&amp; 只清理过时的包</span><br><span class="line">sudo apt-get check #-------检查是否有损坏的依赖</span><br></pre></td></tr></table></figure>
 <p><strong>nohup</strong>: short for “no hang up”</p>
 <ul>
 <li>usage: nohup command &amp;</li>
@@ -256,8 +318,8 @@
     </header>
     <div class="entry">
       
-        <p>从<a href="http://www.rna-seqblog.com/" target="_blank" rel="external">rna-seqblog</a>看到<a href="http://genomebiology.com/2013/14/9/R95/abstract" target="_blank" rel="external">这篇paper</a>,他们对流行的寻找差异基因的方法多了评测，压根没提到DEGSeq,我看到在bioconductor上面，DEGSeq的下载量只有DESeq、edgeR的一半，所以人家说‘流行的’就把DEGSeq排除在外了。</p>
-<p>不过这里要说的主角是另一本书，在翻看前述论文时看到的，打来不禁有相见恨晚的感叹，<a href="http://link.springer.com/book/10.1007/978-1-4614-0782-9/page/1" target="_blank" rel="external">原书</a>还没看完，这里把里面的一些要点记录下来。</p>
+        <p>从<a href="http://www.rna-seqblog.com/" target="_blank" rel="noopener">rna-seqblog</a>看到<a href="http://genomebiology.com/2013/14/9/R95/abstract" target="_blank" rel="noopener">这篇paper</a>,他们对流行的寻找差异基因的方法多了评测，压根没提到DEGSeq,我看到在bioconductor上面，DEGSeq的下载量只有DESeq、edgeR的一半，所以人家说‘流行的’就把DEGSeq排除在外了。</p>
+<p>不过这里要说的主角是另一本书，在翻看前述论文时看到的，打来不禁有相见恨晚的感叹，<a href="http://link.springer.com/book/10.1007/978-1-4614-0782-9/page/1" target="_blank" rel="noopener">原书</a>还没看完，这里把里面的一些要点记录下来。</p>
 <h3 id="microarray和sequencing">microarray和sequencing</h3><p>RNA-Seq相比microarray的优点已经被谈得够多了，这里作者同样讲了RNA-Seq的不足：</p>
 <ul>
 <li>RNA-Seq数据有GC偏好</li>
@@ -379,7 +441,7 @@
     </header>
     <div class="entry">
       
-        <p>用tophat做完mapping之后，接下来就是count reads，<a href="http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html" target="_blank" rel="external">HTSeq</a>的文档很详细，还有一个use case，除了这个case，其他的全部跟着走了一遍。接下来使用htseq-qa和htseq-count的时候，遇到了问题，记录在这里：</p>
+        <p>用tophat做完mapping之后，接下来就是count reads，<a href="http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html" target="_blank" rel="noopener">HTSeq</a>的文档很详细，还有一个use case，除了这个case，其他的全部跟着走了一遍。接下来使用htseq-qa和htseq-count的时候，遇到了问题，记录在这里：</p>
 <h3 id="htseq-qa">htseq-qa</h3><p>安装了HTSeq后，htseq-qa的使用也很简单：</p>
 <ul>
 <li><code>htseq-qa [options] read_file</code> #assumes htseq is in your PATH</li>
@@ -443,7 +505,7 @@
       
         <p>我接触的第一个linux发行版就是基于ubuntu的Macbuntu，那时候还是10.04的时代，后来自己不小心弄坏了MBR，连Windows也进不去，捉了不少难，好在从此学会PE重建主引导的方法。之后进转投Fedora，直到现在又用回ubuntu。</p>
 <p>最主要的原因就是受够了Fedora那难看的字体，而从一开始ubuntu给我的印象就是漂亮，比windows漂亮，至于Mac吗，还没用过暂不置评。放弃Fedora还有一个原因是yum包管理也开始觉得不爽，每次我要search install软件，都要先更新下，前天安装HTSeq又遇到更新源频频出问题，慢的叫人抓狂。</p>
-<p>转到ubuntu之后，顺便也把博客从<a href="http://octopress.org/" target="_blank" rel="external">octopress</a>迁移到<a href="http://zespia.tw/hexo/" target="_blank" rel="external">hexo</a>。octopress是基于ruby的，而hexo基于node，速度比前者明显快多了，随着博客文章越来越多，我越来越在意这种差别。最后，把用到过得几个命令记下来：</p>
+<p>转到ubuntu之后，顺便也把博客从<a href="http://octopress.org/" target="_blank" rel="noopener">octopress</a>迁移到<a href="http://zespia.tw/hexo/" target="_blank" rel="noopener">hexo</a>。octopress是基于ruby的，而hexo基于node，速度比前者明显快多了，随着博客文章越来越多，我越来越在意这种差别。最后，把用到过得几个命令记下来：</p>
 <ul>
 <li><code>source somefile</code> reload the file,but only affect current session, will lose when restart terminal</li>
 <li><code>dpkg -i xxx.deb</code> install xxx soft which is in ubuntu deb format</li>
@@ -498,7 +560,7 @@
     </header>
     <div class="entry">
       
-        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a href="http://kobas.cbi.pku.edu.cn/home.do">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
+        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a href="http://kobas.cbi.pku.edu.cn/home.do" target="_blank" rel="noopener">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
 <h3 id="ID_prepare">ID prepare</h3><p>我的基因号现在形如：</p>
 <ul>
 <li>AT1G01170</li>
@@ -560,7 +622,7 @@
     <div class="entry">
       
         <h3 id="install_tophat">install tophat</h3><p>I got our RNA-seq all data a couple of days ago, after playing with python keggrest package grabing KEGG anotaion data some while, I decided to try installing tophat on my PC and run mapping with real project data.</p>
-<p>Generally just follow the instructions on tophat’s <a href="http://tophat.cbcb.umd.edu/tutorial.shtml" target="_blank" rel="external">offical page</a> is enough. Some points are listed below:</p>
+<p>Generally just follow the instructions on tophat’s <a href="http://tophat.cbcb.umd.edu/tutorial.shtml" target="_blank" rel="noopener">offical page</a> is enough. Some points are listed below:</p>
 <ul>
 <li><p>bowtie. Download and unpack the latest bowtie2, copy it to somewhere you wish, and most importanly add ‘bowtie2’ ‘bowtie2-build’ and ‘bowtie2-inspect’ to your $PATH like this: <code>export PATH=$PATH:/home/popcui/bio/bowtie*</code> A better way to do this is <code>echo</code> previous command to ‘~/.bashrc’</p>
 </li>
@@ -572,60 +634,6 @@
 <p>Now if everything is OK, download the test data and fire up tophat on it to make sure all work as expected.</p>
 <h3 id="prepare_your_reference">prepare your reference</h3><p>If you have bowtie2 installed and want to use it with tophat2, you must create Bowtie2 indexes for your data using Bowtie2-build. For me, as I already have ref.gtf and ref.fa in hand, all I need to do is <code>bowtie2-build ./rna-data/ref.fa ./bt2/ref.fa</code> Reference genome .fa file comes first, and the indexes I want to build will be saved to ‘./bt2/ref.fa’</p>
 <p>Now we have everything ready, let’s begin mapping right away.<code>tophat2 -p 4 -G ./rna-data/ref.gtf -o col_th ./bt2/ref.fa ./rna-data/Col_0.clean.fq</code> ‘-p’ specify the number of threads you want to use, since I have an i3-380 cpu which support virtual threading, I use 4 cpus.’-G’ stands for genes and transcripts anotation. ‘-o’ obviously imply the path you want to have output files saved, then comes reference genome file and input clean data.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-
-
-
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2013/08/21/how-to-get-help-on-python-console/">how to get help on python console</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2013-08-21T14:46:00.000Z">Aug 21 2013</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <ul>
-<li>help(<em>argument</em>) where the argument maybe the module, object, class, method name you are intrested, of course you may need first to import it if it is a module or an object that comes with a module.</li>
-<li>dir(<em>argument</em>) similar with previous help() function, the difference is dir() display short message than help() does. Also, you can do this help(dir) to check out dir() usage.</li>
-<li>the previous two functions applies to all platforms,now comes another tip which works on unix-like machine: pydoc -k keyword.</li>
-</ul>
-<p>And as always, you can google it, if those tricks don’t satisfy you.</p>
 
       
     </div>

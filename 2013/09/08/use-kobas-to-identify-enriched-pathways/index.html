@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>use KOBAS to identify enriched pathways | popucui</title>
@@ -11,11 +11,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="use KOBAS to identify enriched pathways"/>
-  <meta property="og:site_name" content="popucui"/>
+  <meta property="og:title" content="use KOBAS to identify enriched pathways">
+  <meta property="og:site_name" content="popucui">
 
   
-    <meta property="og:image" content="undefined"/>
+    <meta property="og:image" content="undefined">
   
 
   <link href="/favicon.png" rel="icon">
@@ -25,7 +25,7 @@
   <script src="http://cdn.staticfile.org/jquery-i18n/1.1.1/jquery.i18n.min.js"></script>
   
 </head>
-
+</html>
 <body>
   <header id="header" class="inner"><div class="alignleft">
   <h1><a href="/">popucui</a></h1>
@@ -83,7 +83,7 @@
     </header>
     <div class="entry">
       
-        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a href="http://kobas.cbi.pku.edu.cn/home.do" target="_blank" rel="external">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
+        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a href="http://kobas.cbi.pku.edu.cn/home.do" target="_blank" rel="noopener">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
 <h3 id="ID_prepare">ID prepare</h3><p>我的基因号现在形如：</p>
 <ul>
 <li>AT1G01170</li>
@@ -98,7 +98,7 @@
 <li>ath:AT1G01610</li>
 </ul>
 <a id="more"></a>
-<p>这是uniProt识别的KEGG格式gene id,要几行python 代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">  <span class="keyword">with</span> open(<span class="string">'inputgene.txt'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    genelist = f.readlines()</span><br><span class="line">  <span class="keyword">for</span> g <span class="keyword">in</span> genelist:</span><br><span class="line">    g = <span class="string">'ath:'</span> + g.strip()</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'output.txt'</span>,<span class="string">'a'</span>) <span class="keyword">as</span> f:</span><br><span class="line">      f.write(q)</span><br><span class="line">      f.write(<span class="string">'\n'</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"convertion complete!"</span></span><br></pre></td></tr></table></figure></p>
+<p>这是uniProt识别的KEGG格式gene id,要几行python 代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">  <span class="keyword">with</span> open(<span class="string">'inputgene.txt'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    genelist = f.readlines()</span><br><span class="line">  <span class="keyword">for</span> g <span class="keyword">in</span> genelist:</span><br><span class="line">    g = <span class="string">'ath:'</span> + g.strip()</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'output.txt'</span>,<span class="string">'a'</span>) <span class="keyword">as</span> f:</span><br><span class="line">      f.write(q)</span><br><span class="line">      f.write(<span class="string">'\n'</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"convertion complete!"</span>     </span><br></pre></td></tr></table></figure></p>
 <h3 id="ID_mapping">ID mapping</h3><p>使用uniProt ID Mapping功能，源格式选KEGG，目标格式选uniprot KA(这也是KOBAS可识别的格式之一)。Mapping结束后，下载结果：</p>
 <ul>
 <li>From     To</li>
