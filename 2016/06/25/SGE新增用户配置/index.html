@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>SGE新增用户配置 | popucui</title>
+  <meta name="author" content="Jack Cui">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="SGE新增用户配置"/>
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-SGE新增用户配置" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-06-25T08:20:47.000Z"><a href="/2016/06/25/SGE%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE/">2016-06-25</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">SGE新增用户配置</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>日常的服务器管理中，经常需要添加或删除用户，对于linux用户的添加比较简单，使用<code>useradd</code>就可以：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#增加一个名为&quot;zhangshan&quot;的用户，并把他加入&quot;dev&quot;群组，同事创建其home目录(注： 这里所有的操作，都是以root用户身份进行的)</span><br><span class="line">useradd -m -g dev zhangshan</span><br><span class="line">groupadd qa #新建一个组</span><br><span class="line">#更改密码</span><br><span class="line">passwd zhangshan</span><br><span class="line">	&lt;p@ssw0rd&gt;</span><br></pre></td></tr></table></figure>
+<p>添加完之后，新的用户就可以正常使用终端ssh登录集群（服务器）了，如果集群配置了SGE之类的作业调度系统，通常还需要对这些用户开通相应的集群队列权限，还是以用户”zhangshan”为例，将他加入”arusers”这个userset（SGE 称为Access List），这样他就可以使用”arusers”可调度的集群队列（all.q）了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#将&quot;zhangshan&quot; 添加到&quot;arusers&quot;用户组</span><br><span class="line">[root@ngnode1 cuijie]# qconf -au zhangshan arusers</span><br><span class="line">added &quot;zhangshan&quot; to access list &quot;arusers&quot;</span><br><span class="line">#显示&quot;arusers&quot;用户列表，看到&quot;zhangshan&quot;已经加入这个列表</span><br><span class="line">[root@ngnode1 cuijie]# qconf -su arusers</span><br><span class="line">name    arusers</span><br><span class="line">type    ACL</span><br><span class="line">fshare  0</span><br><span class="line">oticket 0</span><br><span class="line">entries chengchaoze,cuijie,zhouyi,leijie,zhangshan</span><br><span class="line">#把&quot;zhangshan&quot;从&quot;arusers&quot;删除</span><br><span class="line">[root@ngnode1 cuijie]# qconf -du zhangshan arusers</span><br><span class="line">deleted user &quot;zhangshan&quot; from access list &quot;arusers&quot;</span><br></pre></td></tr></table></figure>
+<p>更多选项和参数，可参考<code>qconf -help</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/SGE-HPC-linux/">SGE, HPC, linux</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://blog.popucui.com/2016/06/25/SGE%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="as_sitesearch" value="blog.popucui.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/KEGG/">KEGG</a><small>1</small></li>
+  
+    <li><a href="/categories/R/">R</a><small>1</small></li>
+  
+    <li><a href="/categories/R-books/">R, books</a><small>1</small></li>
+  
+    <li><a href="/categories/TED-tips/">TED, tips</a><small>1</small></li>
+  
+    <li><a href="/categories/apple-news/">apple news</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/">babel</a><small>1</small></li>
+  
+    <li><a href="/categories/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/people/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/editer-vim/">editer, vim</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/key-error/">key error</a><small>1</small></li>
+  
+    <li><a href="/categories/os/">os</a><small>1</small></li>
+  
+    <li><a href="/categories/people/">people</a><small>1</small></li>
+  
+    <li><a href="/categories/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>2</small></li>
+  
+    <li><a href="/categories/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/HTSeq/">HTSeq</a><small>1</small></li>
+  
+    <li><a href="/tags/R/">R</a><small>1</small></li>
+  
+    <li><a href="/tags/SGE-HPC-linux/">SGE, HPC, linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Sanger-sequencing/">Sanger sequencing</a><small>1</small></li>
+  
+    <li><a href="/tags/bioinfomatics/">bioinfomatics</a><small>1</small></li>
+  
+    <li><a href="/tags/crawler/">crawler</a><small>1</small></li>
+  
+    <li><a href="/tags/database-ClinVar/">database,ClinVar</a><small>1</small></li>
+  
+    <li><a href="/tags/distance-software/">distance, software</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/maching-learning/">maching learning</a><small>1</small></li>
+  
+    <li><a href="/tags/os/">os</a><small>1</small></li>
+  
+    <li><a href="/tags/paper-notes/">paper notes</a><small>1</small></li>
+  
+    <li><a href="/tags/pips-software/">pips, software</a><small>1</small></li>
+  
+    <li><a href="/tags/programming/">programming</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/sqlite/">sqlite</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/venn/">venn</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Jack Cui
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

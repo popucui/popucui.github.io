@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>parsing ABI file | popucui</title>
+  <meta name="author" content="Jack Cui">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="parsing ABI file"/>
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-parsing-ABI-file" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-02-03T14:45:00.000Z"><a href="/2016/02/03/parsing-ABI-file/">2016-02-03</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">parsing ABI file</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>ABI测序仪下机的结果包含.ab1和.seq文件，通常可以导入BioEdit这样的图形化软件检查峰形和运行blast，而如果想要实现自动化的检测杂合位点并做比对，最终得到变异位点，就需要花些时间研究下。</p>
+<p>主要的问题是，ab1文件是二进制的，关于文件格式的文档稀少，唯一靠谱的是<a target="_blank" rel="noopener" href="http://www.appliedbiosystems.com/support/software_community/ABIF_File_Format.pdf">ABI的官方文档</a> 仔细看过这个文档你会发现，看完之后作为新手的你尽管对于这个格式有所了解，知道它分为Header、Directory以及Data，以及有很多的tag。但知道这些对于想要从ab1提取trace value并进行heterogeneous base calling是远远不够的。所好的是，已经有人有过类似需求并作了尝试。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/bow/abifpy">abifpy</a> 实现的一个解析ab1文件的模块，现已并入BioPython。优点是兼容Python2和Python3，部分meta data已经给你提取出来了，而如果想要更多，可以使用get_data(‘<em>youkey</em>‘)获取。</p>
+</li>
+<li><p>如果只需要取出每个通道的trace value，有了官方文档和abifpy就够了，如果还想学习更多，可以读一读<a target="_blank" rel="noopener" href="https://code.google.com/archive/p/seqtrace/">SeqTrace</a>源码，从中可以学到怎样组织一个项目的代码，以及怎么写测试。</p>
+</li>
+<li><p>前面两个都研究一番之后，还是不能满足你的好奇心？可以把<a target="_blank" rel="noopener" href="http://sourceforge.net/projects/staden/files/io_lib/">io lib</a>这个库研究下，学习使用它的API.</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Sanger-sequencing/">Sanger sequencing</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://blog.popucui.com/2016/02/03/parsing-ABI-file/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="as_sitesearch" value="blog.popucui.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/KEGG/">KEGG</a><small>1</small></li>
+  
+    <li><a href="/categories/R/">R</a><small>1</small></li>
+  
+    <li><a href="/categories/R-books/">R, books</a><small>1</small></li>
+  
+    <li><a href="/categories/TED-tips/">TED, tips</a><small>1</small></li>
+  
+    <li><a href="/categories/apple-news/">apple news</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/">babel</a><small>1</small></li>
+  
+    <li><a href="/categories/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/people/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/editer-vim/">editer, vim</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/key-error/">key error</a><small>1</small></li>
+  
+    <li><a href="/categories/os/">os</a><small>1</small></li>
+  
+    <li><a href="/categories/people/">people</a><small>1</small></li>
+  
+    <li><a href="/categories/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>2</small></li>
+  
+    <li><a href="/categories/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/HTSeq/">HTSeq</a><small>1</small></li>
+  
+    <li><a href="/tags/R/">R</a><small>1</small></li>
+  
+    <li><a href="/tags/SGE-HPC-linux/">SGE, HPC, linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Sanger-sequencing/">Sanger sequencing</a><small>1</small></li>
+  
+    <li><a href="/tags/bioinfomatics/">bioinfomatics</a><small>1</small></li>
+  
+    <li><a href="/tags/crawler/">crawler</a><small>1</small></li>
+  
+    <li><a href="/tags/database-ClinVar/">database,ClinVar</a><small>1</small></li>
+  
+    <li><a href="/tags/distance-software/">distance, software</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/maching-learning/">maching learning</a><small>1</small></li>
+  
+    <li><a href="/tags/os/">os</a><small>1</small></li>
+  
+    <li><a href="/tags/paper-notes/">paper notes</a><small>1</small></li>
+  
+    <li><a href="/tags/pips-software/">pips, software</a><small>1</small></li>
+  
+    <li><a href="/tags/programming/">programming</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/sqlite/">sqlite</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/venn/">venn</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Jack Cui
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

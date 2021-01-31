@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>differential expression for RNA-Seq data | popucui</title>
+  <meta name="author" content="Jack Cui">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="differential expression for RNA-Seq data"/>
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-differential-expression-for-rna-seq-data" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2013-09-23T12:24:45.000Z"><a href="/2013/09/23/differential-expression-for-rna-seq-data/">2013-09-23</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">differential expression for RNA-Seq data</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>从<a target="_blank" rel="noopener" href="http://www.rna-seqblog.com/">rna-seqblog</a>看到<a target="_blank" rel="noopener" href="http://genomebiology.com/2013/14/9/R95/abstract">这篇paper</a>,他们对流行的寻找差异基因的方法多了评测，压根没提到DEGSeq,我看到在bioconductor上面，DEGSeq的下载量只有DESeq、edgeR的一半，所以人家说‘流行的’就把DEGSeq排除在外了。</p>
+<p>不过这里要说的主角是另一本书，在翻看前述论文时看到的，打来不禁有相见恨晚的感叹，<a target="_blank" rel="noopener" href="http://link.springer.com/book/10.1007/978-1-4614-0782-9/page/1">原书</a>还没看完，这里把里面的一些要点记录下来。<br>###microarray和sequencing<br>RNA-Seq相比microarray的优点已经被谈得够多了，这里作者同样讲了RNA-Seq的不足：</p>
+<ul>
+<li>RNA-Seq数据有GC偏好</li>
+<li>mapping的不确定对基因组不同区域的影响是不一样的</li>
+<li>RNA-Seq比较不同处理下的基因表达水平有偏好性。RNA-Seq的统计方法对高counts的检测能力要比低counts强，也就是说RNA-Seq会倾向于将长度更长的基因算作差异（DE）基因。</li>
+<li>RNA-Seq的高灵敏性带来的问题是，提取、富集RNA，RNA片段化和转化成cDNA的过程中都有更大的带来偏差的可能。如小RNA提取的方法强烈影响得到的序列集合。</li>
+<li>RNA-Seq数据更复杂，数据分析可能是瓶颈。</li>
+</ul>
+<p>###mapping<br>主要有两类方法：基于hash-tables;基于Burrows Wheeler Transform</p>
+<ul>
+<li>hash-tables优点是可以找出用户指定的所有structural variants,确定是内存要求高。</li>
+<li>BWT相比前者使用内存更经济，缺点是，BWT确认错配的方法涉及把每个read的大量可能组合进行比对，二这需要相当大的计算量。很多实现方法对此的处理是，不穷尽所有错配比对，这也就意味着一些正确的比对丢失了。</li>
+</ul>
+<p>###RNA-Seq实验设计</p>
+<ul>
+<li>生物学重复重要性：如果我们比较一个癌症组织和一个正常组织，那么我们下的任何一个结论都不能推广到其癌组织群和正常组织群，因为分析过程没有考虑癌组织与癌组子和正常组织与正常组织间潜在的巨大差异。我们的结论仅适用于该研究的样本。</li>
+<li>上样的时候要考虑到不同lane，不同flow cell之间存在的系统差异</li>
+<li>reads长度的确定。更长的reads花费多，但map到trancriptome会更多，对外显子-外显子间连接区分能力更强，发现更多的遗传变异，但是DE的发现来自reads密度，而不是序列覆盖度。总之，是用更长的reads来换取‘mappability’，还是用更深的测序深度换取更多的reads密度呢？作者给的答案是，投资与‘mappability’所获通常比较小。</li>
+<li>paried-end reads: PE-reads可以有更多的reads map到转录组或基因组上，有助于发现结构变异，然而PE-reads带来的更多花费并不能增加检测DE的强度。</li>
+</ul>
+<p>EOF</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/paper-notes/">paper notes</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://blog.popucui.com/2013/09/23/differential-expression-for-rna-seq-data/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="as_sitesearch" value="blog.popucui.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/KEGG/">KEGG</a><small>1</small></li>
+  
+    <li><a href="/categories/R/">R</a><small>1</small></li>
+  
+    <li><a href="/categories/R-books/">R, books</a><small>1</small></li>
+  
+    <li><a href="/categories/TED-tips/">TED, tips</a><small>1</small></li>
+  
+    <li><a href="/categories/apple-news/">apple news</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/">babel</a><small>1</small></li>
+  
+    <li><a href="/categories/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/people/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/editer-vim/">editer, vim</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/key-error/">key error</a><small>1</small></li>
+  
+    <li><a href="/categories/os/">os</a><small>1</small></li>
+  
+    <li><a href="/categories/people/">people</a><small>1</small></li>
+  
+    <li><a href="/categories/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>2</small></li>
+  
+    <li><a href="/categories/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/HTSeq/">HTSeq</a><small>1</small></li>
+  
+    <li><a href="/tags/R/">R</a><small>1</small></li>
+  
+    <li><a href="/tags/SGE-HPC-linux/">SGE, HPC, linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Sanger-sequencing/">Sanger sequencing</a><small>1</small></li>
+  
+    <li><a href="/tags/bioinfomatics/">bioinfomatics</a><small>1</small></li>
+  
+    <li><a href="/tags/crawler/">crawler</a><small>1</small></li>
+  
+    <li><a href="/tags/database-ClinVar/">database,ClinVar</a><small>1</small></li>
+  
+    <li><a href="/tags/distance-software/">distance, software</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/maching-learning/">maching learning</a><small>1</small></li>
+  
+    <li><a href="/tags/os/">os</a><small>1</small></li>
+  
+    <li><a href="/tags/paper-notes/">paper notes</a><small>1</small></li>
+  
+    <li><a href="/tags/pips-software/">pips, software</a><small>1</small></li>
+  
+    <li><a href="/tags/programming/">programming</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/sqlite/">sqlite</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/venn/">venn</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Jack Cui
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

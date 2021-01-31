@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>一道信息分析面试题的分析 | popucui</title>
+  <meta name="author" content="Jack Cui">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="一道信息分析面试题的分析"/>
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-一道信息分析面试题的分析" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2013-10-27T06:47:39.000Z"><a href="/2013/10/27/%E4%B8%80%E9%81%93%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E5%88%86%E6%9E%90/">2013-10-27</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">一道信息分析面试题的分析</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>前几天接到一个公司的电话面试，当天晚上HR发来一道题，限三日内完成并发回。我看了下，正好用到的知识自己都熟悉，花了几个钟头就给发回去了 :-)</p>
+<p>原题大意这样 写一个程序，分别计算一个目录里所有fasta格式的核酸序列的GC含量，然后按照GC含量由低到高显示，并把结果写入一个文件<br>显示序列信息的格式为：<br>文件名  序列名  GC含量<br>hem.fasta hem1  24.3%</p>
+<p>这道题挺简单的，细看之下主要有这么几点：</p>
+<ul>
+<li>计算序列GC含量，可以用一个函数实现</li>
+<li>列出目录下的所有文件，然后判断他们是不是fasta格式文件。前者用os模块的<code>listdir</code>就可，后者就是要看文件的首行是不是形如“&gt;at1g23490”开头，即是否“&gt;”开头，后面紧跟字符，正则就行了。</li>
+<li>结果排序。这个应该是这道简单笔试题最难的部分了。正好之前从一个<a target="_blank" rel="noopener" href="http://wangwei007.blog.51cto.com/68019/1131610/">博客</a>读到解决排序的办法，就依样做了。把每条序列的结果存到一个列表里，然后对列表排序。</li>
+</ul>
+<p>这是我的代码 <a target="_blank" rel="noopener" href="https://github.com/popucui/PyManipulateFiles/blob/master/bioinfoInterviw.py">信息分析面试</a></p>
+<p> EOF</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/bioinfomatics/">bioinfomatics</a>, <a href="/tags/programming/">programming</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://blog.popucui.com/2013/10/27/%E4%B8%80%E9%81%93%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E5%88%86%E6%9E%90/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="as_sitesearch" value="blog.popucui.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/KEGG/">KEGG</a><small>1</small></li>
+  
+    <li><a href="/categories/R/">R</a><small>1</small></li>
+  
+    <li><a href="/categories/R-books/">R, books</a><small>1</small></li>
+  
+    <li><a href="/categories/TED-tips/">TED, tips</a><small>1</small></li>
+  
+    <li><a href="/categories/apple-news/">apple news</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/">babel</a><small>1</small></li>
+  
+    <li><a href="/categories/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/people/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/editer-vim/">editer, vim</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/key-error/">key error</a><small>1</small></li>
+  
+    <li><a href="/categories/os/">os</a><small>1</small></li>
+  
+    <li><a href="/categories/people/">people</a><small>1</small></li>
+  
+    <li><a href="/categories/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>2</small></li>
+  
+    <li><a href="/categories/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/HTSeq/">HTSeq</a><small>1</small></li>
+  
+    <li><a href="/tags/R/">R</a><small>1</small></li>
+  
+    <li><a href="/tags/SGE-HPC-linux/">SGE, HPC, linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Sanger-sequencing/">Sanger sequencing</a><small>1</small></li>
+  
+    <li><a href="/tags/bioinfomatics/">bioinfomatics</a><small>1</small></li>
+  
+    <li><a href="/tags/crawler/">crawler</a><small>1</small></li>
+  
+    <li><a href="/tags/database-ClinVar/">database,ClinVar</a><small>1</small></li>
+  
+    <li><a href="/tags/distance-software/">distance, software</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/maching-learning/">maching learning</a><small>1</small></li>
+  
+    <li><a href="/tags/os/">os</a><small>1</small></li>
+  
+    <li><a href="/tags/paper-notes/">paper notes</a><small>1</small></li>
+  
+    <li><a href="/tags/pips-software/">pips, software</a><small>1</small></li>
+  
+    <li><a href="/tags/programming/">programming</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/sqlite/">sqlite</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/venn/">venn</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Jack Cui
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

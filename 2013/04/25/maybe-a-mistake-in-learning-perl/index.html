@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>maybe a mistake in &#39;Learning Perl&#39; | popucui</title>
+  <meta name="author" content="Jack Cui">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="maybe a mistake in &#39;Learning Perl&#39;"/>
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-maybe-a-mistake-in-learning-perl" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2013-04-25T14:56:00.000Z"><a href="/2013/04/25/maybe-a-mistake-in-learning-perl/">2013-04-25</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">maybe a mistake in &#39;Learning Perl&#39;</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>最近开始学习perl，网上查加打听知道”Learning Perl”这本书很不错，被亲切地称为“小骆驼”。我读的是东南大学书版社第六版的影印版。今天看到chap11，遇到一个问题死活整不出来想要的结果。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/perl</span></span><br><span class="line"><span class="keyword">use</span> DateTime; </span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> $dt1 = DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">1987</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">12</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">18</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> $dt2 =DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">2013</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">5</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">1</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> $duration = $dt2 - $dt1;</span><br><span class="line"><span class="keyword">my</span> @units = $duration-&gt;in_units( <span class="string">qw(years months days)</span> );  <span class="comment">#重点就在这里，书里面是单数，结果打印出来全是0，改成复数就ok了</span></span><br><span class="line"><span class="keyword">printf</span> <span class="string">&quot;%d years, %d months, and %d days\n&quot;</span>, @units;</span><br></pre></td></tr></table></figure>
+
+<p>今天到此收工， 明天还要早起。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/perl/">perl</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://blog.popucui.com/2013/04/25/maybe-a-mistake-in-learning-perl/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="as_sitesearch" value="blog.popucui.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/KEGG/">KEGG</a><small>1</small></li>
+  
+    <li><a href="/categories/R/">R</a><small>1</small></li>
+  
+    <li><a href="/categories/R-books/">R, books</a><small>1</small></li>
+  
+    <li><a href="/categories/TED-tips/">TED, tips</a><small>1</small></li>
+  
+    <li><a href="/categories/apple-news/">apple news</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/">babel</a><small>1</small></li>
+  
+    <li><a href="/categories/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/people/books/">books</a><small>1</small></li>
+  
+    <li><a href="/categories/editer-vim/">editer, vim</a><small>1</small></li>
+  
+    <li><a href="/categories/python/babel/key-error/">key error</a><small>1</small></li>
+  
+    <li><a href="/categories/os/">os</a><small>1</small></li>
+  
+    <li><a href="/categories/people/">people</a><small>1</small></li>
+  
+    <li><a href="/categories/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/python/">python</a><small>2</small></li>
+  
+    <li><a href="/categories/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/HTSeq/">HTSeq</a><small>1</small></li>
+  
+    <li><a href="/tags/R/">R</a><small>1</small></li>
+  
+    <li><a href="/tags/SGE-HPC-linux/">SGE, HPC, linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Sanger-sequencing/">Sanger sequencing</a><small>1</small></li>
+  
+    <li><a href="/tags/bioinfomatics/">bioinfomatics</a><small>1</small></li>
+  
+    <li><a href="/tags/crawler/">crawler</a><small>1</small></li>
+  
+    <li><a href="/tags/database-ClinVar/">database,ClinVar</a><small>1</small></li>
+  
+    <li><a href="/tags/distance-software/">distance, software</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/maching-learning/">maching learning</a><small>1</small></li>
+  
+    <li><a href="/tags/os/">os</a><small>1</small></li>
+  
+    <li><a href="/tags/paper-notes/">paper notes</a><small>1</small></li>
+  
+    <li><a href="/tags/pips-software/">pips, software</a><small>1</small></li>
+  
+    <li><a href="/tags/programming/">programming</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/sqlite/">sqlite</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/venn/">venn</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2021 Jack Cui
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
