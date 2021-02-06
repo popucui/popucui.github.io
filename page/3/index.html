@@ -49,6 +49,55 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-use-kobas-to-identify-enriched-pathways" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2013-09-08T13:33:00.000Z"><a href="/2013/09/08/use-kobas-to-identify-enriched-pathways/">2013-09-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/09/08/use-kobas-to-identify-enriched-pathways/">use KOBAS to identify enriched pathways</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a target="_blank" rel="noopener" href="http://kobas.cbi.pku.edu.cn/home.do">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
+<p>###ID prepare<br>我的基因号现在形如：</p>
+<ul>
+<li>AT1G01170</li>
+<li>AT1G01480</li>
+<li>AT1G01490</li>
+</ul>
+<p>我要把它转为：</p>
+<ul>
+<li>ath:AT1G01170</li>
+<li>ath:AT1G01480</li>
+<li>ath:AT1G01490</li>
+<li>ath:AT1G01610</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/09/08/use-kobas-to-identify-enriched-pathways/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article id="post-tophat-install-and-usage-note" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -393,49 +442,6 @@
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/perl</span></span><br><span class="line"><span class="keyword">use</span> DateTime; </span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> $dt1 = DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">1987</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">12</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">18</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> $dt2 =DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">2013</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">5</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">1</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> $duration = $dt2 - $dt1;</span><br><span class="line"><span class="keyword">my</span> @units = $duration-&gt;in_units( <span class="string">qw(years months days)</span> );  <span class="comment">#重点就在这里，书里面是单数，结果打印出来全是0，改成复数就ok了</span></span><br><span class="line"><span class="keyword">printf</span> <span class="string">&quot;%d years, %d months, and %d days\n&quot;</span>, @units;</span><br></pre></td></tr></table></figure>
 
 <p>今天到此收工， 明天还要早起。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article id="post-zhi-shi-xiang-da-gei-ni" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time class="dt-published" datetime="2013-04-12T11:00:00.000Z"><a href="/2013/04/12/zhi-shi-xiang-da-gei-ni/">2013-04-12</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/04/12/zhi-shi-xiang-da-gei-ni/">只是想打给你</a></h1>
-  
-
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p>从小到大，每做一件事，或自觉或不自觉就要回答一个问题：“为什么呢？”仿佛如果没有，或者你解释不清，就会遭来质疑。也就是我们被灌输了这样一种意识，做A就是为了直接或间接达到B。</p>
-<p>这里我联想到，《天才在做 疯子在右》里面作者讲自己和他朋友的一件趣事。作者这位朋友骨子里，就是有一种“反劲儿”，比如她坦言自己的想法，站在艾菲尔铁塔上小便一定特爽吧。说到这里的时候，作者就不停的揣度朋友这样做的动机，包括行为主义在内的几个答案都被否定了，因为本来就没有动机，她就是觉着这样做挺爽的，没有理由。</p>
-<p>那么，要是有人打电话给你，只是为了打给你呢？</p>
-<ul>
-<li>“xx 我是xx 在忙吗？” </li>
-<li>“恩 xxx” </li>
-<li>“哦 那你忙吧 没事儿” </li>
-<li>“不是 有事你说吧，我真的没想到你会打过来” </li>
-<li>“就是想起你来了 没事儿，你先忙，再联系。”</li>
-</ul>
-<p>写得有点儿乱，归根结底就是想说，做事除了目的性很强的，有时候还有这样一类人，他们给你打电话，就是想听听你的声音，想知道你在干吗。他们哪怕想在艾菲尔铁塔上小便，也只是这样，他们是很纯粹的、简单的一类人。</p>
 
       
     </div>

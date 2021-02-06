@@ -49,6 +49,48 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-parsing-ABI-file" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-02-03T14:45:00.000Z"><a href="/2016/02/03/parsing-ABI-file/">2016-02-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/02/03/parsing-ABI-file/">parsing ABI file</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>ABI测序仪下机的结果包含.ab1和.seq文件，通常可以导入BioEdit这样的图形化软件检查峰形和运行blast，而如果想要实现自动化的检测杂合位点并做比对，最终得到变异位点，就需要花些时间研究下。</p>
+<p>主要的问题是，ab1文件是二进制的，关于文件格式的文档稀少，唯一靠谱的是<a target="_blank" rel="noopener" href="http://www.appliedbiosystems.com/support/software_community/ABIF_File_Format.pdf">ABI的官方文档</a> 仔细看过这个文档你会发现，看完之后作为新手的你尽管对于这个格式有所了解，知道它分为Header、Directory以及Data，以及有很多的tag。但知道这些对于想要从ab1提取trace value并进行heterogeneous base calling是远远不够的。所好的是，已经有人有过类似需求并作了尝试。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/bow/abifpy">abifpy</a> 实现的一个解析ab1文件的模块，现已并入BioPython。优点是兼容Python2和Python3，部分meta data已经给你提取出来了，而如果想要更多，可以使用get_data(‘<em>youkey</em>‘)获取。</p>
+</li>
+<li><p>如果只需要取出每个通道的trace value，有了官方文档和abifpy就够了，如果还想学习更多，可以读一读<a target="_blank" rel="noopener" href="https://code.google.com/archive/p/seqtrace/">SeqTrace</a>源码，从中可以学到怎样组织一个项目的代码，以及怎么写测试。</p>
+</li>
+<li><p>前面两个都研究一番之后，还是不能满足你的好奇心？可以把<a target="_blank" rel="noopener" href="http://sourceforge.net/projects/staden/files/io_lib/">io lib</a>这个库研究下，学习使用它的API.</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article id="post-hello-again" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -431,55 +473,6 @@
     </div>
     <footer>
       
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article id="post-use-kobas-to-identify-enriched-pathways" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time class="dt-published" datetime="2013-09-08T13:33:00.000Z"><a href="/2013/09/08/use-kobas-to-identify-enriched-pathways/">2013-09-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/09/08/use-kobas-to-identify-enriched-pathways/">use KOBAS to identify enriched pathways</a></h1>
-  
-
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p>看着手里公司做好的KEGG富集列表，总想自己试试看自己能做怎么样。之前想着自己用python写个脚本来做，开始写才发现，这活不是一个几行脚本能搞定的，不过发现了keggrest package，一个实现了KEGG API的好东西，基本上get link list都有了。今天发现了KOBAS，才知道国人已经为傻瓜化KEGG注释搭建<a target="_blank" rel="noopener" href="http://kobas.cbi.pku.edu.cn/home.do">web server</a>.我要做的就是把合适的基因号导入，然后run就行了。</p>
-<p>###ID prepare<br>我的基因号现在形如：</p>
-<ul>
-<li>AT1G01170</li>
-<li>AT1G01480</li>
-<li>AT1G01490</li>
-</ul>
-<p>我要把它转为：</p>
-<ul>
-<li>ath:AT1G01170</li>
-<li>ath:AT1G01480</li>
-<li>ath:AT1G01490</li>
-<li>ath:AT1G01610</li>
-</ul>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/09/08/use-kobas-to-identify-enriched-pathways/#more" class="more-link">Read More</a>
-          </div>
         
         
       
