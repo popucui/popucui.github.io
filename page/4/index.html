@@ -49,6 +49,42 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-maybe-a-mistake-in-learning-perl" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2013-04-25T14:56:00.000Z"><a href="/2013/04/25/maybe-a-mistake-in-learning-perl/">2013-04-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/04/25/maybe-a-mistake-in-learning-perl/">maybe a mistake in &#39;Learning Perl&#39;</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>最近开始学习perl，网上查加打听知道”Learning Perl”这本书很不错，被亲切地称为“小骆驼”。我读的是东南大学书版社第六版的影印版。今天看到chap11，遇到一个问题死活整不出来想要的结果。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/perl</span></span><br><span class="line"><span class="keyword">use</span> DateTime; </span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> $dt1 = DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">1987</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">12</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">18</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> $dt2 =DateTime-&gt;new(</span><br><span class="line">	<span class="string">year =&gt;</span> <span class="number">2013</span>,</span><br><span class="line">	<span class="string">month =&gt;</span> <span class="number">5</span>,</span><br><span class="line">	<span class="string">day =&gt;</span> <span class="number">1</span>,</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">my</span> $duration = $dt2 - $dt1;</span><br><span class="line"><span class="keyword">my</span> @units = $duration-&gt;in_units( <span class="string">qw(years months days)</span> );  <span class="comment">#重点就在这里，书里面是单数，结果打印出来全是0，改成复数就ok了</span></span><br><span class="line"><span class="keyword">printf</span> <span class="string">&quot;%d years, %d months, and %d days\n&quot;</span>, @units;</span><br></pre></td></tr></table></figure>
+
+<p>今天到此收工， 明天还要早起。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article id="post-zhi-shi-xiang-da-gei-ni" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -321,6 +357,8 @@
     <li><a href="/tags/Sanger-sequencing/">Sanger sequencing</a><small>1</small></li>
   
     <li><a href="/tags/bioinfomatics/">bioinfomatics</a><small>1</small></li>
+  
+    <li><a href="/tags/bioinformatics/">bioinformatics</a><small>1</small></li>
   
     <li><a href="/tags/crawler/">crawler</a><small>1</small></li>
   

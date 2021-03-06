@@ -49,6 +49,42 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-Fast-genome-and-metagenome-distance-estimation-using-MinHash" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2016-05-29T06:47:55.000Z"><a href="/2016/05/29/Fast-genome-and-metagenome-distance-estimation-using-MinHash/">2016-05-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/05/29/Fast-genome-and-metagenome-distance-estimation-using-MinHash/">Fast genome and metagenome distance estimation using MinHash</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="http://mash.readthedocs.org/">mash</a> 是一个可快速计算两个（或多个）基因组之间相似度的软件，可输入基因组序列或测序结果（fastq文件），使用计算机科学中一个经典的方法MinHash，一般用来判断两个网页内容是否雷同，以决定是否从搜索结果中去掉某些类似的结果。</p>
+<p>使用示例：</p>
+<p><code>mash dist -p 4 -l 、/path/to/ref.fa query_fa.txt &gt; query_mashed.txt  </code></p>
+<p>用于计算所有query序列和ref序列的相似度，而相似度和物种间的亲缘关系是相关的，其中&lt;query_fa.txt&gt; 是一个记录了所有query序列的文件</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article id="post-parsing-ABI-file" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -443,47 +479,6 @@
 
 
 
-  <article id="post-hello-again-ubuntu" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time class="dt-published" datetime="2013-09-10T10:48:24.000Z"><a href="/2013/09/10/hello-again-ubuntu/">2013-09-10</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/09/10/hello-again-ubuntu/">hello again ubuntu</a></h1>
-  
-
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p>我接触的第一个linux发行版就是基于ubuntu的Macbuntu，那时候还是10.04的时代，后来自己不小心弄坏了MBR，连Windows也进不去，捉了不少难，好在从此学会PE重建主引导的方法。之后进转投Fedora，直到现在又用回ubuntu。</p>
-<p>最主要的原因就是受够了Fedora那难看的字体，而从一开始ubuntu给我的印象就是漂亮，比windows漂亮，至于Mac吗，还没用过暂不置评。放弃Fedora还有一个原因是yum包管理也开始觉得不爽，每次我要search install软件，都要先更新下，前天安装HTSeq又遇到更新源频频出问题，慢的叫人抓狂。</p>
-<p>转到ubuntu之后，顺便也把博客从<a target="_blank" rel="noopener" href="http://octopress.org/">octopress</a>迁移到<a target="_blank" rel="noopener" href="http://zespia.tw/hexo/">hexo</a>。octopress是基于ruby的，而hexo基于node，速度比前者明显快多了，随着博客文章越来越多，我越来越在意这种差别。最后，把用到过得几个命令记下来：</p>
-<ul>
-<li><code>source somefile</code> reload the file,but only affect current session, will lose when restart terminal</li>
-<li><code>dpkg -i xxx.deb</code> install xxx soft which is in ubuntu deb format</li>
-<li><code>nvm use version num</code> use the specified version of node <code>nvm ls</code> list all installed versions of node</li>
-</ul>
-<p>EOF</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -556,6 +551,8 @@
     <li><a href="/tags/Sanger-sequencing/">Sanger sequencing</a><small>1</small></li>
   
     <li><a href="/tags/bioinfomatics/">bioinfomatics</a><small>1</small></li>
+  
+    <li><a href="/tags/bioinformatics/">bioinformatics</a><small>1</small></li>
   
     <li><a href="/tags/crawler/">crawler</a><small>1</small></li>
   

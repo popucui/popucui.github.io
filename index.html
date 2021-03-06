@@ -49,6 +49,45 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-Use-docker-in-nextflow-pipelines" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-03-06T08:58:34.000Z"><a href="/2021/03/06/Use-docker-in-nextflow-pipelines/">2021-03-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/03/06/Use-docker-in-nextflow-pipelines/">Use docker in nextflow pipelines</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.nextflow.io/docs/latest/index.html">Nextflow</a>可以很方便地搭建数据分析流程，而且对docker，云和集群计算环境也有很好的兼容。这里仅记载我使用nextflow搭建整合了docker功能的分析流程中，常用的命令。</p>
+<h2 id="docker相关常用命令"><a href="#docker相关常用命令" class="headerlink" title="docker相关常用命令"></a>docker相关常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## build image</span></span><br><span class="line">docker build  -f ./Dockerfile  .</span><br><span class="line"><span class="comment">## add a tag</span></span><br><span class="line">docker build -t user/repo:tag .</span><br><span class="line"><span class="comment">## push local docker image to the remote repo</span></span><br><span class="line">docker tag &lt;md5_of_docker_image&gt; user/repo:tag</span><br><span class="line">docker push user/repo:tag</span><br><span class="line"><span class="comment">## one line to build an image with predefined name</span></span><br><span class="line">docker build -t user/repo:tag -f Dockerfile .</span><br><span class="line"></span><br><span class="line"><span class="comment">## run the docker </span></span><br><span class="line">docker run -i -t user/repo:tag</span><br><span class="line"></span><br><span class="line"><span class="comment">## manage the images</span></span><br><span class="line"><span class="comment">### list all the images</span></span><br><span class="line">docker images</span><br><span class="line"><span class="comment">### remove a specific image, might need to add -f to force the operation</span></span><br><span class="line">docker image rm &lt;md5_of_image&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">## export </span></span><br><span class="line">docker save hifibio/pipeline:scRNAseq_nf_v1.06 | gzip -c &gt; scRNAseq_nf_v1.06.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment">## import</span></span><br><span class="line">gunzip -c scRNAseq_nf_v1.06.tar.gz | docker import</span><br><span class="line"><span class="comment">## or import after gunzip</span></span><br><span class="line">docker import scRNAseq_nf_v1.06.tar</span><br></pre></td></tr></table></figure>
+<p>对于docker镜像导入和导出，可参考这里<a target="_blank" rel="noopener" href="https://foxutech.com/how-to-save-and-import-export-docker-images/">save and export docker image</a>。</p>
+<h2 id="nextflow流程启动"><a href="#nextflow流程启动" class="headerlink" title="nextflow流程启动"></a>nextflow流程启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##这里默认 nextflow.nf 在当前目录，如果不在，需通过 -c/-C 指定配置文件（-C为覆盖默认参数）</span></span><br><span class="line"><span class="comment">## -with-tower 为使用tower的后台监控功能，开启此功能需在 https://tower.nf/ 注册账号，并将自己的token写到配置文件的 tower section</span></span><br><span class="line">nextflow run main.nf  -with-docker -N user@example.com -with-tower -name name_of_this_run</span><br></pre></td></tr></table></figure>
+<h3 id="email通知"><a href="#email通知" class="headerlink" title="email通知"></a>email通知</h3><p>如果使用<code>-with-tower</code>可直接打开tower内置的邮件通知，这样流程全部任务结束后，会收到邮件通知。如果需要在不用tower的情况下收到流程运行相关的通知，可以使用如下配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mail &#123;</span><br><span class="line">    from &#x3D; &#39;user@163.com&#39;</span><br><span class="line">    smtp.host &#x3D; &#39;smtp.163.com&#39;</span><br><span class="line">    smtp.ssl.enable &#x3D; true</span><br><span class="line">    smtp.port &#x3D; 465</span><br><span class="line">    smtp.user &#x3D; &#39;user&#39;</span><br><span class="line">    smtp.password &#x3D; &#39;passw0rd&#39;</span><br><span class="line">    smtp.auth &#x3D; true</span><br><span class="line">    debug &#x3D; true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="docker-file-permission"><a href="#docker-file-permission" class="headerlink" title="docker file permission"></a>docker file permission</h3><p>由于docker流程是以root身份运行，输出文件所有者是root，这样可能会给后续文件修改和清理带来麻烦，要避免此类问题，可在配置中指定<code>docker.fixOwnership</code>为<code>true</code>。<br>注意对process的参数修饰，支持通过process名或通配符的方式，这体现了nextflow的灵活性，这里也支持通过指定<code>label</code>的方式完成，具体可参见<a target="_blank" rel="noopener" href="https://www.nextflow.io/docs/latest/process.html?highlight=label#label">官方文档</a>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">process &#123;</span><br><span class="line">    container &#x3D; &#39;aafe3c024859&#39;</span><br><span class="line">    docker.enabled &#x3D; true</span><br><span class="line">    docker.fixOwnership &#x3D; true</span><br><span class="line"></span><br><span class="line">    withName: &#39;runFastQC.*&#39; &#123; cpus &#x3D; 6 &#125;</span><br><span class="line">    withName: &#39;clusterBarcodes.*&#39; &#123; cpus &#x3D; 62 &#125;</span><br><span class="line">    withName: mapTranscripts &#123; cpus &#x3D; 62 &#125;</span><br><span class="line">    withName: createMatrix &#123; cpus &#x3D; 4 &#125;</span><br><span class="line">    withName: createConsensus &#123; cpus &#x3D; 62 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article id="post-2021-02-06-如何剪辑flv格式视频" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
   <div class="post-content">
@@ -429,42 +468,6 @@
 
 
 
-  <article id="post-Fast-genome-and-metagenome-distance-estimation-using-MinHash" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time class="dt-published" datetime="2016-05-29T06:47:55.000Z"><a href="/2016/05/29/Fast-genome-and-metagenome-distance-estimation-using-MinHash/">2016-05-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/05/29/Fast-genome-and-metagenome-distance-estimation-using-MinHash/">Fast genome and metagenome distance estimation using MinHash</a></h1>
-  
-
-    </header>
-    <div class="e-content entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="http://mash.readthedocs.org/">mash</a> 是一个可快速计算两个（或多个）基因组之间相似度的软件，可输入基因组序列或测序结果（fastq文件），使用计算机科学中一个经典的方法MinHash，一般用来判断两个网页内容是否雷同，以决定是否从搜索结果中去掉某些类似的结果。</p>
-<p>使用示例：</p>
-<p><code>mash dist -p 4 -l 、/path/to/ref.fa query_fa.txt &gt; query_mashed.txt  </code></p>
-<p>用于计算所有query序列和ref序列的相似度，而相似度和物种间的亲缘关系是相关的，其中&lt;query_fa.txt&gt; 是一个记录了所有query序列的文件</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -535,6 +538,8 @@
     <li><a href="/tags/Sanger-sequencing/">Sanger sequencing</a><small>1</small></li>
   
     <li><a href="/tags/bioinfomatics/">bioinfomatics</a><small>1</small></li>
+  
+    <li><a href="/tags/bioinformatics/">bioinformatics</a><small>1</small></li>
   
     <li><a href="/tags/crawler/">crawler</a><small>1</small></li>
   
