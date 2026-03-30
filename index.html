@@ -134,6 +134,174 @@
     <header>
       
   
+    <h1 class="title"><a href="/2025/03/26/2025-03-26-hexo-migration-record/">Hexo 博客从 3.9.0 升级到 8.1.1 迁移记录</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2025-03-26T09:00:00.000Z">2025-03-26</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="Hexo-博客从-3-9-0-升级到-8-1-1-迁移记录"><a href="#Hexo-博客从-3-9-0-升级到-8-1-1-迁移记录" class="headerlink" title="Hexo 博客从 3.9.0 升级到 8.1.1 迁移记录"></a>Hexo 博客从 3.9.0 升级到 8.1.1 迁移记录</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">最近迷上学习vibe coding，我在一个社区关注了几个人，基本每天都会去刷一下他们的更新，现在有了coding agent，想着用这个练练手，那是第一个vibe coding的项目。</span><br><span class="line"></span><br><span class="line">上面的用户发帖监控的小网站做好之后，我心里盘算还有什么可以做的，就想到了我这个荒废很久的个人博客。启用第一件事，就是把hexo的版本更新，然后处理下可能的兼容性问题。做完之后，索性让模型帮我总结整个过程并记录下来，于是有了这篇博文。</span><br><span class="line"></span><br><span class="line">随着传播媒介的快速变化和大家注意力越来越金贵，越来越少的人把时间投入个人博客上。但就像很久以前开这个博客的时候想的，主要是为了自己，为了那些随风而逝的岁月。</span><br></pre></td></tr></table></figure>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>原有 Hexo 博客基于 3.9.0 版本（2019年），Node.js 要求 6.9-8.0。当前系统 Node.js 为 v24.13.0，需要升级 Hexo 到最新版本。</p>
+<h2 id="迁移方案对比"><a href="#迁移方案对比" class="headerlink" title="迁移方案对比"></a>迁移方案对比</h2><table>
+<thead>
+<tr>
+<th>方案</th>
+<th>描述</th>
+<th>优缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>方案A：渐进升级</td>
+<td>3.9 → 4.x → 5.x → 6.x → 7.x → 8.x 逐步升级</td>
+<td>耗时长，每步都可能遇到问题</td>
+</tr>
+<tr>
+<td>方案B：新建项目迁移</td>
+<td>创建全新 Hexo 8.x 项目，只迁移文章和主题</td>
+<td>快速干净，推荐</td>
+</tr>
+</tbody></table>
+<p><strong>最终选择：方案B</strong></p>
+<h2 id="迁移步骤"><a href="#迁移步骤" class="headerlink" title="迁移步骤"></a>迁移步骤</h2><h3 id="1-环境检查"><a href="#1-环境检查" class="headerlink" title="1. 环境检查"></a>1. 环境检查</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查 Node.js 版本</span></span><br><span class="line">node -v</span><br><span class="line"><span class="comment"># v24.13.0 ✅ 满足 Hexo 8.x 要求（需要 20.19.0+）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查文章数量</span></span><br><span class="line">find <span class="built_in">source</span>/_posts -name <span class="string">&quot;*.md&quot;</span> | <span class="built_in">wc</span> -l</span><br><span class="line"><span class="comment"># 21 篇文章</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-创建新项目"><a href="#2-创建新项目" class="headerlink" title="2. 创建新项目"></a>2. 创建新项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装最新 hexo-cli</span></span><br><span class="line">npm install -g hexo-cli@latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新项目</span></span><br><span class="line">hexo init githubPagesBlog-new</span><br><span class="line"><span class="built_in">cd</span> githubPagesBlog-new</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-迁移内容"><a href="#3-迁移内容" class="headerlink" title="3. 迁移内容"></a>3. 迁移内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 迁移文章</span></span><br><span class="line"><span class="built_in">cp</span> -r ../githubPagesBlog/source/_posts/* <span class="built_in">source</span>/_posts/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 迁移主题</span></span><br><span class="line"><span class="built_in">cp</span> -r ../githubPagesBlog/themes/damnclean themes/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 迁移其他资源</span></span><br><span class="line"><span class="built_in">cp</span> ../githubPagesBlog/source/CNAME <span class="built_in">source</span>/</span><br><span class="line"><span class="built_in">cp</span> -r ../githubPagesBlog/source/_drafts <span class="built_in">source</span>/</span><br><span class="line"><span class="built_in">cp</span> -r ../githubPagesBlog/source/about <span class="built_in">source</span>/</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-配置站点信息"><a href="#4-配置站点信息" class="headerlink" title="4. 配置站点信息"></a>4. 配置站点信息</h3><p>编辑 <code>_config.yml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">popucui</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">Stuff</span> <span class="string">Related</span> <span class="string">to</span> <span class="string">Bioinformatics</span> <span class="string">Computer</span> <span class="string">and</span> <span class="string">More</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Bioinformatics</span> <span class="string">|</span> <span class="string">Computer</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">Jack</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://blog.popucui.com/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">damnclean</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">https://github.com/popucui/popucui.github.io.git</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-修复主题兼容性问题"><a href="#5-修复主题兼容性问题" class="headerlink" title="5. 修复主题兼容性问题"></a>5. 修复主题兼容性问题</h3><p>Hexo 8.x 相比 3.x 有多处 API 变更，需要修改主题模板文件：</p>
+<h4 id="5-1-修复-page-each-方法"><a href="#5-1-修复-page-each-方法" class="headerlink" title="5.1 修复 page.each() 方法"></a>5.1 修复 <code>page.each()</code> 方法</h4><p><strong>文件</strong>: <code>themes/damnclean/layout/_partial/archive.ejs</code></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- &lt;% page.each(function(item)&#123; %&gt;</span></span><br><span class="line"><span class="addition">+ &lt;% page.posts.each(function(item)&#123; %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-修复-URL-生成方法"><a href="#5-2-修复-URL-生成方法" class="headerlink" title="5.2 修复 URL 生成方法"></a>5.2 修复 URL 生成方法</h4><p><strong>涉及文件</strong>: 多个 <code>.ejs</code> 模板文件</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- &lt;%- config.root %&gt;&lt;%- item.path %&gt;</span></span><br><span class="line"><span class="addition">+ &lt;%- url_for(item.path) %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-修复日期格式化"><a href="#5-3-修复日期格式化" class="headerlink" title="5.3 修复日期格式化"></a>5.3 修复日期格式化</h4><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- &lt;%= item.date.toDate().toISOString() %&gt;</span></span><br><span class="line"><span class="addition">+ &lt;%= item.date.toISOString() %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-4-修复-Archives-页面样式"><a href="#5-4-修复-Archives-页面样式" class="headerlink" title="5.4 修复 Archives 页面样式"></a>5.4 修复 Archives 页面样式</h4><p><strong>文件</strong>: <code>themes/damnclean/source/css/_partial/archive.styl</code></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.archive</span></span><br><span class="line">  <span class="selector-tag">article</span></span><br><span class="line">    <span class="selector-tag">header</span></span><br><span class="line">      <span class="attribute">padding-left</span> <span class="number">0</span></span><br><span class="line">      <span class="selector-class">.icon</span></span><br><span class="line">        <span class="attribute">display</span> none  // 隐藏遮挡标题的图标</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-构建和部署"><a href="#6-构建和部署" class="headerlink" title="6. 构建和部署"></a>6. 构建和部署</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">npx hexo generate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地预览</span></span><br><span class="line">npx hexo server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署到 GitHub Pages</span></span><br><span class="line">npx hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="版本对比"><a href="#版本对比" class="headerlink" title="版本对比"></a>版本对比</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>旧版本</th>
+<th>新版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hexo</td>
+<td>3.9.0</td>
+<td>8.1.1</td>
+</tr>
+<tr>
+<td>Node.js 要求</td>
+<td>6.9-8.0</td>
+<td>20.19.0+</td>
+</tr>
+<tr>
+<td>hexo-deployer-git</td>
+<td>0.0.4</td>
+<td>4.0.0</td>
+</tr>
+<tr>
+<td>hexo-renderer-marked</td>
+<td>0.2.4</td>
+<td>7.0.0</td>
+</tr>
+<tr>
+<td>hexo-renderer-stylus</td>
+<td>0.2.0</td>
+<td>3.0.1</td>
+</tr>
+</tbody></table>
+<h2 id="废弃的配置项"><a href="#废弃的配置项" class="headerlink" title="废弃的配置项"></a>废弃的配置项</h2><p>从 Hexo 3.x 到 8.x，以下配置项已废弃：</p>
+<table>
+<thead>
+<tr>
+<th>废弃配置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>auto_spacing</code></td>
+<td>已移除</td>
+</tr>
+<tr>
+<td><code>multi_thread</code></td>
+<td>已移除</td>
+</tr>
+<tr>
+<td><code>max_open_file</code></td>
+<td>已移除</td>
+</tr>
+<tr>
+<td><code>external_link: true</code></td>
+<td>改为对象形式配置</td>
+</tr>
+</tbody></table>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 本地预览</span></span><br><span class="line">npx hexo server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">npx hexo generate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署</span></span><br><span class="line">npx hexo deploy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一键生成+部署</span></span><br><span class="line">npx hexo g -d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理缓存</span></span><br><span class="line">npx hexo clean</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li><strong>主题兼容性</strong>: 旧主题需要修改模板文件才能在新版 Hexo 上运行</li>
+<li><strong>插件更新</strong>: 所有插件都需要更新到兼容版本</li>
+<li><strong>配置迁移</strong>: 不要直接复制旧配置文件，建议对照新配置模板逐项迁移</li>
+<li><strong>备份</strong>: 迁移前务必备份原项目</li>
+</ol>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/">Hexo 官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/news/">Hexo 更新日志</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/migration.html">从 Hexo 3.x 迁移</a></li>
+</ul>
+<hr>
+<p><strong>迁移日期</strong>: 2025-03-26</p>
+
+      
+    </div>
+    <footer>
+      
+        
+
+
+
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2025/03/26/2025-03-26-hello-world-test/">Hello World Test</a></h1>
   
 
@@ -557,64 +725,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#将&quot;zhangshan&quot; 添加到&quot;arusers&quot;用户组</span><br><span class="line">[root@ngnode1 cuijie]# qconf -au zhangshan arusers</span><br><span class="line">added &quot;zhangshan&quot; to access list &quot;arusers&quot;</span><br><span class="line">#显示&quot;arusers&quot;用户列表，看到&quot;zhangshan&quot;已经加入这个列表</span><br><span class="line">[root@ngnode1 cuijie]# qconf -su arusers</span><br><span class="line">name    arusers</span><br><span class="line">type    ACL</span><br><span class="line">fshare  0</span><br><span class="line">oticket 0</span><br><span class="line">entries chengchaoze,cuijie,zhouyi,leijie,zhangshan</span><br><span class="line">#把&quot;zhangshan&quot;从&quot;arusers&quot;删除</span><br><span class="line">[root@ngnode1 cuijie]# qconf -du zhangshan arusers</span><br><span class="line">deleted user &quot;zhangshan&quot; from access list &quot;arusers&quot;</span><br></pre></td></tr></table></figure>
 
 <p>更多选项和参数，可参考<code>qconf -help</code></p>
-
-      
-    </div>
-    <footer>
-      
-        
-
-
-
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-<!-- hackish -->
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2016/06/05/2016-06-05-setup-and-run-PIPS-to-identify-Putative-Pathogenicity-Islands/">setup and run PIPS to identify Putative Pathogenicity Islands</a></h1>
-  
-
-      
-        <p class="published">
-          Published: <time datetime="2016-06-04T22:16:21.000Z">2016-06-05</time>
-        </p>
-      
-    </header>
-    <div class="entry">
-      
-        <p>Recently I need to do PAI search using <a target="_blank" rel="noopener" href="http://www.genoma.ufpa.br/lgcm/pips/">PIPS</a>, after going throught all the little traps, I think it worth to write the whole process down.</p>
-<ol>
-<li>follow the README instructions to install hammer and tRNA-scan. Maybe you want to change the default prefix of INSTALL derectory</li>
-<li>Theoretically, it should be good enough to run, but you’ll definitely be stuck at some point. OK, here are the tricks to try below</li>
-<li>replace <code>gbk2embl.pl</code> with a new one, such as this:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env perl</span><br><span class="line">use strict;</span><br><span class="line">use warnings;</span><br><span class="line">use Bio::SeqIO;</span><br><span class="line"></span><br><span class="line">if (@ARGV != 2) &#123;    die &quot;USAGE: gb2embl.pl &lt;in.gbk&gt; &lt;out.embl&gt;\n&quot;; &#125;</span><br><span class="line"></span><br><span class="line">my $seqio = Bio::SeqIO-&gt;new(&#x27;-format&#x27; =&gt; &#x27;genbank&#x27;, &#x27;-file&#x27; =&gt; &quot;$ARGV[0]&quot;);</span><br><span class="line">my $seqout = new Bio::SeqIO(&#x27;-format&#x27; =&gt; &#x27;embl&#x27;, &#x27;-file&#x27; =&gt; &quot;&gt;$ARGV[1]&quot;);</span><br><span class="line">while( my $seq = $seqio-&gt;next_seq) &#123;</span><br><span class="line">  $seqout-&gt;write_seq($seq)</span><br><span class="line">&#125;</span><br><span class="line">		</span><br></pre></td></tr></table></figure>
-
-
-<p>For the last step, modify <code>mergfiles.pl</code>. change for e.g. <code>%hash2-&gt;{$chave}</code> to <code>$hash2{$chave}</code>, note that a couple of similar syntax mistake in this script.</p>
 
       
     </div>
