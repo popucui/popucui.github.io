@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>setup and run PIPS to identify Putative Pathogenicity Islands | popucui</title>
+  <meta name="author" content="Jack">
+  
+  <meta name="description" content="Bioinformatics | Computer">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="setup and run PIPS to identify Putative Pathogenicity Islands"/>
+  <meta property="og:site_name" content="popucui"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="popucui" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="http://cdn.staticfile.org/jquery-i18n/1.1.1/jquery.i18n.min.js"></script>
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">popucui</a></h1>
+  <h2><a href="/">Stuff Related to Bioinformatics Computer and More</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+<div class="alignleft" style="margin-top: 15px">
+
+
+  <iframe src="http://ghbtns.com/github-btn.html?user=popucui&type=follow"
+  allowtransparency="true" frameborder="0" scrolling="0" width="132" height="20"></iframe>
+
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">setup and run PIPS to identify Putative Pathogenicity Islands</h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2016-06-04T22:16:21.000Z">2016-06-05</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Recently I need to do PAI search using <a target="_blank" rel="noopener" href="http://www.genoma.ufpa.br/lgcm/pips/">PIPS</a>, after going throught all the little traps, I think it worth to write the whole process down.</p>
+<ol>
+<li>follow the README instructions to install hammer and tRNA-scan. Maybe you want to change the default prefix of INSTALL derectory</li>
+<li>Theoretically, it should be good enough to run, but you’ll definitely be stuck at some point. OK, here are the tricks to try below</li>
+<li>replace <code>gbk2embl.pl</code> with a new one, such as this:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env perl</span><br><span class="line">use strict;</span><br><span class="line">use warnings;</span><br><span class="line">use Bio::SeqIO;</span><br><span class="line"></span><br><span class="line">if (@ARGV != 2) &#123;    die &quot;USAGE: gb2embl.pl &lt;in.gbk&gt; &lt;out.embl&gt;\n&quot;; &#125;</span><br><span class="line"></span><br><span class="line">my $seqio = Bio::SeqIO-&gt;new(&#x27;-format&#x27; =&gt; &#x27;genbank&#x27;, &#x27;-file&#x27; =&gt; &quot;$ARGV[0]&quot;);</span><br><span class="line">my $seqout = new Bio::SeqIO(&#x27;-format&#x27; =&gt; &#x27;embl&#x27;, &#x27;-file&#x27; =&gt; &quot;&gt;$ARGV[1]&quot;);</span><br><span class="line">while( my $seq = $seqio-&gt;next_seq) &#123;</span><br><span class="line">  $seqout-&gt;write_seq($seq)</span><br><span class="line">&#125;</span><br><span class="line">		</span><br></pre></td></tr></table></figure>
+
+
+<p>For the last step, modify <code>mergfiles.pl</code>. change for e.g. <code>%hash2-&gt;{$chave}</code> to <code>$hash2{$chave}</code>, note that a couple of similar syntax mistake in this script.</p>
+
+      
+    </div>
+    <footer>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+  <!-- 多说评论框 start -->
+<!-- 多说公共JS代码 end -->
+
+
+
+</div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2026 Jack
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://cdn.bootcss.com/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="http://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css" media="screen" type="text/css">
+<script src="http://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>
